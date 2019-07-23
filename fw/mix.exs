@@ -57,6 +57,7 @@ defmodule Fw.MixProject do
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in timer)
       {:nerves_time, "~> 0.2"},
       dep(:play, :github),
+      {:ramoops_logger, "~> 0.3.0"},
       {:ring_logger, "~> 0.4"},
       {:scenic_driver_nerves_rpi, "0.10.0", targets: @all_targets},
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
