@@ -17,6 +17,8 @@ config :play, :viewport, %{
   ]
 }
 
+config :launcher, refresh_enabled: true
+
 # Disable tzdata automatic updates
 config :tzdata, :autoupdate, :disabled
 
