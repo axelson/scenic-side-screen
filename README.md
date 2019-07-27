@@ -9,3 +9,4 @@ Check the following directories for detailed instructions on running the project
 
 TODO:
 - [x] Integrate https://github.com/smartrent/ramoops_logger
+- [ ] Create a scenic log viewer app to view RingLogger logs or similar
