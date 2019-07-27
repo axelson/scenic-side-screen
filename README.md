@@ -1,5 +1,7 @@
 Top-level apps that runs multiple scenic apps underneath them using a launcher application written in Scenic.
 
+![Screenshot of running application](launcher.png)
+
 Check the following directories for detailed instructions on running the projects:
 * `ui/` - Run via scenic on the desktop
 * `fw/` - Run on a Nerves device with a touchscreen
