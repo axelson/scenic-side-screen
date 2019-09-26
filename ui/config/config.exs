@@ -17,6 +17,8 @@ config :play, :viewport, %{
   ]
 }
 
+config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
+# config :logger, :console, format: "[$level] $message\n"
 config :launcher, refresh_enabled: true
 
 # Disable tzdata automatic updates
