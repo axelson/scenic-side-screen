@@ -58,6 +58,12 @@ config :nerves_init_gadget,
 config :launcher, :backlight_module, Fw.Backlight
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
+config :launcher,
+  scenes: [
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Home, nil}}
+  ]
+
 # Cannot write update files to a read-only file system. Plus we don't need
 # accurate timezones
 config :tzdata, :autoupdate, :disabled
