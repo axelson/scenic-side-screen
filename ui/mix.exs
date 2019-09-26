@@ -21,7 +21,7 @@ defmodule Ui.MixProject do
   defp deps do
     [
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0-rc.6", only: :dev, runtime: false},
+      {:dialyxir, "1.0.0-rc.7", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :github),
       dep(:play, :github),
       dep(:launcher, :github),
