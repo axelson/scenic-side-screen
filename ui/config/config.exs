@@ -19,7 +19,14 @@ config :play, :viewport, %{
 
 config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
 # config :logger, :console, format: "[$level] $message\n"
+
 config :launcher, refresh_enabled: true
+
+config :launcher,
+  scenes: [
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Home, nil}}
+  ]
 
 # Disable tzdata automatic updates
 config :tzdata, :autoupdate, :disabled
