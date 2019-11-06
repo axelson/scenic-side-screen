@@ -39,7 +39,7 @@
   "parse_trans": {:hex, :parse_trans, "3.3.0", "09765507a3c7590a784615cfd421d101aec25098d50b89d7aa1d66646bc571c1", [:rebar3], [], "hexpm"},
   "play": {:git, "https://github.com/axelson/scenic_asteroids.git", "a63786a0c221b52c0ac0e0543a6844933389c681", [sparse: "play", branch: "js-multiplayer"]},
   "poison": {:hex, :poison, "3.1.0", "d9eb636610e096f86f25d9a46f35a9facac35609a7591b3be3326e99a0484665", [:mix], [], "hexpm"},
-  "pomodoro": {:git, "https://github.com/axelson/pomodoro.git", "99f9bebf1ac9d8626ad8c7f45d2cb8c21f3a7fa1", []},
+  "pomodoro": {:git, "https://github.com/axelson/pomodoro.git", "cda29c2ac21c45d9fef285c256f2bd607f24c311", []},
   "ramoops_logger": {:hex, :ramoops_logger, "0.3.0", "c909408f5ec775c12ea3e06fb883c380fdd0f1c019a1f43426c2a9935cde62a7", [:mix], [], "hexpm"},
   "ring_logger": {:hex, :ring_logger, "0.8.0", "b1baddc269099b2afe2ea3a87b8e2b71e57331c0000038ae55090068aac679db", [:mix], [], "hexpm"},
   "scenic": {:hex, :scenic, "0.10.2", "f4f0a00eed677ac50a7b297375c0323d03f4273580f17c50b877abfaf0c6dc1f", [:make, :mix], [{:elixir_make, "~> 0.5", [hex: :elixir_make, repo: "hexpm", optional: false]}, {:font_metrics, "~> 0.3", [hex: :font_metrics, repo: "hexpm", optional: false]}], "hexpm"},
