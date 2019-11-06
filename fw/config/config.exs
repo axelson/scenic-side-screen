@@ -68,6 +68,8 @@ config :launcher,
 # accurate timezones
 config :tzdata, :autoupdate, :disabled
 
+# TODO: Can we configure something else here? Maybe the launcher itself?
+# Actually need to ensure that play is not reading from these configs
 config :play, :viewport, %{
   size: {800, 480},
   # default_scene: {Play.Scene.Splash, Play.Scene.Asteroids},
