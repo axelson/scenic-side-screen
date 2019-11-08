@@ -61,7 +61,7 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 config :launcher,
   scenes: [
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
-    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Home, nil}}
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}}
   ]
 
 # Cannot write update files to a read-only file system. Plus we don't need
