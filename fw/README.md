@@ -1,3 +1,7 @@
+`dotenv mix firmware && ./upload.sh 192.168.1.6`
+
+# Default instructions
+
 To run the Nerves app:
   * `export MIX_TARGET=my_target` or prefix every command with
     `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
