@@ -60,7 +60,7 @@ defmodule Fw.MixProject do
       {:ramoops_logger, "~> 0.3.0"},
       {:ring_logger, "~> 0.4"},
       {:scenic, "~> 0.10", targets: @all_targets, override: true},
-      {:scenic_driver_nerves_rpi, "0.10.0", targets: @all_targets},
+      {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       dep(:pomodoro, :github),
