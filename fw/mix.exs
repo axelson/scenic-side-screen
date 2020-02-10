@@ -46,9 +46,10 @@ defmodule Fw.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0-rc.7", only: :dev, runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false, override: true},
+      {:dialyxir, "1.0.0-rc.7", only: :dev, runtime: false, override: true},
       dep(:launcher, :github),
+      {:harald, "0.2.0"},
       {:nerves, "~> 1.5", runtime: false, targets: @all_targets},
       {:nerves_firmware_ssh, ">= 0.0.0", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},

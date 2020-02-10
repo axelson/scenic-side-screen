@@ -27,7 +27,10 @@ defmodule Fw.Application do
     [
       # Starts a worker by calling: Fw.Worker.start_link(arg)
       # {Fw.Worker, arg},
-      Fw.Backlight
+      Fw.Backlight,
+      {Harald.Transport,
+       namespace: :bt,
+       adapter: {Harald.Transport.UART, device: "/dev/ttyAMA0", uart_opts: [speed: 115_200]}}
     ]
   end
 end
