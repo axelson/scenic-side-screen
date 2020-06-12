@@ -25,6 +25,7 @@ defmodule Ui.MixProject do
       dep(:phoenix_live_reload, :github),
       dep(:play, :github),
       dep(:launcher, :github),
+      dep(:piano_ui, :path),
       {:scenic, "~> 0.10", targets: :host, override: true},
       {:scenic_driver_glfw, "~> 0.10", targets: :host, override: true},
       # {:scenic_driver_glfw, github: "boydm/scenic_driver_glfw", override: true, targets: :host},
@@ -59,4 +60,7 @@ defmodule Ui.MixProject do
 
   defp dep(:scenic_live_reload, :path),
     do: {:scenic_live_reload, path: "../../scenic_live_reload", only: :dev}
+
+  defp dep(:piano_ui, :path),
+    do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
 end
