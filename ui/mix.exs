@@ -25,12 +25,13 @@ defmodule Ui.MixProject do
       dep(:phoenix_live_reload, :github),
       dep(:play, :github),
       dep(:launcher, :github),
-      dep(:piano_ui, :path),
-      {:scenic, "~> 0.10", targets: :host, override: true},
-      {:scenic_driver_glfw, "~> 0.10", targets: :host, override: true},
+      dep(:piano_ui, :github),
+      dep(:piano_ctl, :github),
+      {:scenic, "~> 0.10"},
+      {:scenic_driver_glfw, "~> 0.10"},
       # {:scenic_driver_glfw, github: "boydm/scenic_driver_glfw", override: true, targets: :host},
-      dep(:scenic_live_reload, :path),
-      {:file_system, path: "../../forks/file_system", override: true},
+      dep(:scenic_live_reload, :hex),
+      # {:file_system, path: "../../forks/file_system", override: true},
       dep(:pomodoro, :github)
       # {:exsync, "0.2.4"}
     ]
@@ -61,6 +62,8 @@ defmodule Ui.MixProject do
   defp dep(:scenic_live_reload, :path),
     do: {:scenic_live_reload, path: "../../scenic_live_reload", only: :dev}
 
-  defp dep(:piano_ui, :path),
-    do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
+  defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
+  defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
+
+  defp dep(:piano_ctl, :github), do: {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true}
 end

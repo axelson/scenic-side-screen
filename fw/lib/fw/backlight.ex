@@ -3,7 +3,11 @@ defmodule Fw.Backlight do
   require Logger
 
   @default_brightness 255
+
+  # Partially inspired by
+  # https://github.com/jjcarstens/hub/blob/c3f5bb947dd79fa26aa2c654a498da75ea2c4713/atm/lib/atm/session.ex#L134
   @brightness_file "/sys/class/backlight/rpi_backlight/brightness"
+  @sys_backlight "/sys/class/backlight/rpi_backlight/bl_power"
 
   # Public API
 
@@ -74,6 +78,8 @@ defmodule Fw.Backlight do
   defp set_screen_brightness(value) do
     if nerves?() do
       value = value |> round() |> to_string()
+      # TODO: FINISH this
+      # File.write(@sys_backlight, "1")
       File.write(@brightness_file, value)
     else
       # mac_brightness = (value / 255) |> to_string()

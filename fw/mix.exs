@@ -47,9 +47,9 @@ defmodule Fw.MixProject do
   defp deps do
     [
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0-rc.7", only: :dev, runtime: false},
+      {:dialyxir, "1.0.0", only: :dev, runtime: false},
       dep(:launcher, :github),
-      {:nerves, "~> 1.5", runtime: false, targets: @all_targets},
+      {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
       {:nerves_firmware_ssh, ">= 0.0.0", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
