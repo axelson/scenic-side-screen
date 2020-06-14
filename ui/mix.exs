@@ -21,7 +21,7 @@ defmodule Ui.MixProject do
   defp deps do
     [
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0-rc.7", only: :dev, runtime: false},
+      {:dialyxir, "1.0.0", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :github),
       dep(:play, :github),
       dep(:launcher, :github),
@@ -65,5 +65,7 @@ defmodule Ui.MixProject do
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
 
-  defp dep(:piano_ctl, :github), do: {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true}
+  defp dep(:piano_ctl, :github) do
+    {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
+  end
 end
