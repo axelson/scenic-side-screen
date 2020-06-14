@@ -46,9 +46,16 @@ defmodule Fw.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # Part of the application
+      dep(:launcher, :github),
+      dep(:play, :github),
+      dep(:pomodoro, :github),
+      dep(:piano_ui, :github),
+      dep(:piano_ctl, :github),
+
+      # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.0.0", only: :dev, runtime: false},
-      dep(:launcher, :github),
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
       {:nerves_firmware_ssh, ">= 0.0.0", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
@@ -56,14 +63,12 @@ defmodule Fw.MixProject do
       {:nerves_system_rpi3, "~> 1.8", runtime: false, targets: :rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
-      dep(:play, :github),
       {:ramoops_logger, "~> 0.3.0"},
       {:ring_logger, "~> 0.4"},
       {:scenic, "~> 0.10", targets: @all_targets, override: true},
       {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
-      dep(:pomodoro, :github),
       {:toolshed, "~> 0.2"}
     ]
     |> List.flatten()
@@ -79,4 +84,11 @@ defmodule Fw.MixProject do
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro"}
+
+  defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
+  defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
+
+  defp dep(:piano_ctl, :github) do
+    {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
+  end
 end

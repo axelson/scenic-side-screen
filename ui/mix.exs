@@ -19,17 +19,20 @@ defmodule Ui.MixProject do
 
   defp deps do
     [
-      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0", only: :dev, runtime: false},
-      dep(:phoenix_live_reload, :github),
+      # Part of the application
       dep(:play, :github),
       dep(:launcher, :github),
       dep(:piano_ui, :github),
       dep(:piano_ctl, :github),
+      dep(:pomodoro, :github),
+
+      # Supporting
+      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "1.0.0", only: :dev, runtime: false},
+      dep(:phoenix_live_reload, :hex),
       {:scenic, "~> 0.10"},
       {:scenic_driver_glfw, "~> 0.10"},
-      dep(:scenic_live_reload, :hex),
-      dep(:pomodoro, :github)
+      dep(:scenic_live_reload, :hex)
     ]
     |> List.flatten()
   end
@@ -37,6 +40,7 @@ defmodule Ui.MixProject do
   defp dep(:launcher, :path), do: {:launcher, path: "../../launcher", override: true}
   defp dep(:launcher, :github), do: {:launcher, github: "axelson/scenic_launcher"}
 
+  defp dep(:phoenix_live_reload, :hex), do: {:phoenix_live_reload, "~> 1.2"}
   defp dep(:phoenix_live_reload, :path),
     do: {:phoenix_live_reload, path: "../../forks/phoenix_live_reload", only: :dev}
 
