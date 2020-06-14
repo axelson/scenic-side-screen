@@ -32,7 +32,7 @@ config :launcher,
     {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
   ]
 
-config :piano_ctl, libcluster_hosts: []
+config :piano_ctl, libcluster_hosts: [:ctl@localhost]
 config :piano_ui, :ctl_node, :ctl@localhost
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 

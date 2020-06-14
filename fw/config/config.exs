@@ -10,6 +10,10 @@ use Mix.Config
 
 config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 
+# Cannot write update files to a read-only file system. Plus we don't need
+# accurate timezones
+config :tzdata, :autoupdate, :disabled
+
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those
 # involved with firmware updates.
@@ -62,12 +66,13 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 config :launcher,
   scenes: [
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
-    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}}
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
+    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
   ]
 
-# Cannot write update files to a read-only file system. Plus we don't need
-# accurate timezones
-config :tzdata, :autoupdate, :disabled
+config :piano_ctl, libcluster_hosts: [:"ctl@192.168.1.4"]
+config :piano_ui, :ctl_node, :"ctl@192.168.1.4"
+config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
 # TODO: Can we configure something else here? Maybe the launcher itself?
 # Actually need to ensure that play is not reading from these configs
