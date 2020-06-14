@@ -11,7 +11,6 @@ defmodule Ui.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
@@ -29,11 +28,8 @@ defmodule Ui.MixProject do
       dep(:piano_ctl, :github),
       {:scenic, "~> 0.10"},
       {:scenic_driver_glfw, "~> 0.10"},
-      # {:scenic_driver_glfw, github: "boydm/scenic_driver_glfw", override: true, targets: :host},
       dep(:scenic_live_reload, :hex),
-      # {:file_system, path: "../../forks/file_system", override: true},
       dep(:pomodoro, :github)
-      # {:exsync, "0.2.4"}
     ]
     |> List.flatten()
   end
