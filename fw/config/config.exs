@@ -58,7 +58,8 @@ config :nerves_firmware_ssh,
 config :nerves_init_gadget,
   ifname: "eth0",
   address_method: :dhcp,
-  node_name: "murphy"
+  node_name: "murphy",
+  node_host: System.get_env("NODE_HOST")
 
 config :launcher, :backlight_module, Fw.Backlight
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
