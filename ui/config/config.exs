@@ -1,5 +1,8 @@
 use Mix.Config
 
+# Disable tzdata automatic updates
+config :tzdata, :autoupdate, :disabled
+
 # Configure the main viewport for the Scenic application
 config :play, :viewport, %{
   name: :main_viewport,
@@ -25,11 +28,13 @@ config :launcher, refresh_enabled: true
 config :launcher,
   scenes: [
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
-    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Home, nil}}
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
+    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
   ]
 
-# Disable tzdata automatic updates
-config :tzdata, :autoupdate, :disabled
+config :piano_ctl, libcluster_hosts: []
+config :piano_ui, :ctl_node, :ctl@localhost
+config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
 case Mix.env() do
   :dev ->
