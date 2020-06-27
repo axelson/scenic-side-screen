@@ -71,8 +71,14 @@ config :launcher,
     {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
   ]
 
-config :piano_ctl, libcluster_hosts: [:"ctl@192.168.1.4"]
-config :piano_ui, :ctl_node, :"ctl@192.168.1.4"
+ctl_node =
+  case System.get_env("CTL_NODE") do
+    nil -> nil
+    node -> String.to_atom(node)
+  end
+
+config :piano_ui, :ctl_node, ctl_node
+config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
 # TODO: Can we configure something else here? Maybe the launcher itself?
