@@ -2,6 +2,7 @@ use Mix.Config
 
 # Disable tzdata automatic updates
 config :tzdata, :autoupdate, :disabled
+config :phoenix, :json_library, Jason
 
 # Configure the main viewport for the Scenic application
 config :play, :viewport, %{

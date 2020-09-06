@@ -13,6 +13,7 @@ defmodule Ui.MixProject do
 
   def application do
     [
+      mod: {UiApplication, []},
       extra_applications: [:logger]
     ]
   end
@@ -41,6 +42,7 @@ defmodule Ui.MixProject do
   defp dep(:launcher, :github), do: {:launcher, github: "axelson/scenic_launcher"}
 
   defp dep(:phoenix_live_reload, :hex), do: {:phoenix_live_reload, "~> 1.2"}
+
   defp dep(:phoenix_live_reload, :path),
     do: {:phoenix_live_reload, path: "../../forks/phoenix_live_reload", only: :dev}
 
