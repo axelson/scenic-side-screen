@@ -33,7 +33,9 @@ defmodule Ui.MixProject do
       dep(:phoenix_live_reload, :hex),
       {:scenic, "~> 0.10"},
       {:scenic_driver_glfw, "~> 0.10"},
-      dep(:scenic_live_reload, :hex)
+      dep(:scenic_live_reload, :hex),
+      dep(:blue_heron, :github),
+      dep(:blue_heron_transport_usb, :github)
     ]
     |> List.flatten()
   end
@@ -70,4 +72,24 @@ defmodule Ui.MixProject do
   defp dep(:piano_ctl, :github) do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
+
+  defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
+
+  defp dep(:blue_heron, :github),
+    do: {:blue_heron, github: "smartrent/blue_heron", branch: "vendor-specific", sparse: "blue_heron", override: true}
+
+  defp dep(:blue_heron, :path),
+    do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
+
+  defp dep(:blue_heron_transport_usb, :hex), do: {:blue_heron_transport_usb, ">= 0.0.0"}
+
+  defp dep(:blue_heron_transport_usb, :github),
+    do:
+      {:blue_heron_transport_usb,
+       github: "smartrent/blue_heron",
+       branch: "vendor-specific",
+       sparse: "blue_heron_transport_usb"}
+
+  defp dep(:blue_heron_transport_usb, :path),
+    do: {:blue_heron_transport_usb, path: "~/dev/forks/blue_heron/blue_heron_transport_usb"}
 end
