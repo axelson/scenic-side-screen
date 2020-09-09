@@ -30,8 +30,8 @@ defmodule GoveeUsb do
   }
 
   @default_usb_config %{
-    vid: 0x0a5c,
-    pid: 0x21e8,
+    vid: 0x0A5C,
+    pid: 0x21E8,
     init_commands: [@write_local_name]
   }
 
@@ -74,6 +74,22 @@ defmodule GoveeUsb do
   """
   def set_color(pid, rgb) do
     GenServer.call(pid, {:set_color, rgb})
+  end
+
+  def turn_off(pid) do
+    GenServer.call(pid, :turn_off)
+  end
+
+  def turn_on(pid) do
+    GenServer.call(pid, :turn_on)
+  end
+
+  def set_brightness(pid, brightness) do
+    GenServer.call(pid, {:set_brightness, brightness})
+  end
+
+  def set_white(pid, value) do
+    GenServer.call(pid, {:set_white, value})
   end
 
   @impl GenServer
@@ -135,6 +151,14 @@ defmodule GoveeUsb do
     {:noreply, state}
   end
 
+  @command_power 0x01
+  @command_brightness 0x04
+  @command_color 0x05
+
+  @led_mode_manual 0x02
+  # @led_mode_microphone 0x06
+  # @led_mode_scenes 0x05
+
   @impl GenServer
   # Assembles the raw RGB data into a binary that the bulb expects
   # this was found here https://github.com/Freemanium/govee_btled#analyzing-the-traffic
@@ -144,10 +168,9 @@ defmodule GoveeUsb do
   end
 
   def handle_call({:set_color, rgb}, _from, state) do
-    value = <<0x33, 0x5, 0x2, rgb::24, 0, rgb::24, 0, 0, 0, 0, 0, 0, 0, 0, 0>>
-    checksum = calculate_xor(value, 0)
-
-    case BlueHeron.ATT.Client.write(state.conn, 0x0015, <<value::binary-19, checksum::8>>) do
+    build_command(@command_color, <<@led_mode_manual, rgb::24, 0, rgb::24>>)
+    |> send_command(state.conn)
+    |> case do
       :ok ->
         Logger.info("Setting Govee LED Color: ##{inspect(rgb, base: :hex)}")
         {:reply, :ok, state}
@@ -156,6 +179,91 @@ defmodule GoveeUsb do
         Logger.info("Failed to set Govee LED color")
         {:reply, error, state}
     end
+  end
+
+  def handle_call(:turn_off, _from, %{connected?: false} = state) do
+    Logger.warn("Not connected to a bulb")
+    {:reply, {:error, :disconnected}, state}
+  end
+
+  def handle_call(:turn_off, _from, state) do
+    build_command(@command_power, <<0>>)
+    |> send_command(state.conn)
+    |> case do
+      :ok ->
+        Logger.info("Turned Govee off")
+        {:reply, :ok, state}
+
+      error ->
+        Logger.info("Failed to turn Govee off #{inspect(error)}")
+        {:reply, error, state}
+    end
+  end
+
+  def handle_call(:turn_on, _from, %{connected?: false} = state) do
+    Logger.warn("Not connected to a bulb")
+    {:reply, {:error, :disconnected}, state}
+  end
+
+  def handle_call(:turn_on, _from, state) do
+    Logger.info("try to turn on")
+
+    build_command(@command_power, <<0x1>>)
+    |> send_command(state.conn)
+    |> case do
+      :ok ->
+        Logger.info("Turned Govee on")
+        {:reply, :ok, state}
+
+      error ->
+        Logger.info("Failed to turn Govee on #{inspect(error)}")
+        {:reply, error, state}
+    end
+  end
+
+  def handle_call({:set_brightness, brightness}, _from, state) do
+    build_command(@command_brightness, <<brightness>>)
+    |> send_command(state.conn)
+    |> case do
+      :ok ->
+        Logger.info("Set brightness")
+        {:reply, :ok, state}
+
+      error ->
+        Logger.info("Failed to set brightness #{inspect(error)}")
+        {:reply, error, state}
+    end
+  end
+
+  def handle_call({:set_white, value}, _from, state) do
+    build_command(@command_color, <<@led_mode_manual, 0xFF, 0xFF, 0xFF, 0x1, value::24>>)
+    |> send_command(state.conn)
+    |> case do
+      :ok ->
+        Logger.info("Set white")
+        {:reply, :ok, state}
+
+      error ->
+        Logger.warn("Failed to set white #{inspect(error)}")
+        {:reply, error, state}
+    end
+  end
+
+  defp send_command(command, conn) do
+    handle = 0x0015
+    BlueHeron.ATT.Client.write(conn, handle, command)
+  end
+
+  defp build_command(command, payload) do
+    value = pad(<<0x33, command, payload::binary>>)
+    checksum = calculate_xor(value, 0)
+    <<value::binary-19, checksum::8>>
+  end
+
+  def pad(binary) when byte_size(binary) == 19, do: binary
+
+  def pad(binary) do
+    pad(<<binary::binary, 0>>)
   end
 
   defp calculate_xor(<<>>, checksum), do: checksum
