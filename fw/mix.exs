@@ -69,7 +69,9 @@ defmodule Fw.MixProject do
       {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
-      {:toolshed, "~> 0.2"}
+      {:toolshed, "~> 0.2"},
+      dep(:blue_heron, :path),
+      dep(:blue_heron_transport_uart, :path)
     ]
     |> List.flatten()
   end
@@ -91,4 +93,24 @@ defmodule Fw.MixProject do
   defp dep(:piano_ctl, :github) do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
+
+  defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
+
+  defp dep(:blue_heron, :github),
+    do: {:blue_heron, github: "smartrent/blue_heron", branch: "vendor-specific", sparse: "blue_heron", override: true}
+
+  defp dep(:blue_heron, :path),
+    do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
+
+  defp dep(:blue_heron_transport_uart, :hex), do: {:blue_heron_transport_uart, ">= 0.0.0"}
+
+  defp dep(:blue_heron_transport_uart, :github),
+    do:
+      {:blue_heron_transport_uart,
+       github: "smartrent/blue_heron",
+       branch: "vendor-specific",
+       sparse: "blue_heron_transport_uart"}
+
+  defp dep(:blue_heron_transport_uart, :path),
+    do: {:blue_heron_transport_uart, path: "~/dev/forks/blue_heron/blue_heron_transport_uart"}
 end

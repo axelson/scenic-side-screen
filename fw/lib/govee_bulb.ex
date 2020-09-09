@@ -1,4 +1,4 @@
-defmodule GoveeUsb do
+defmodule GoveeBulb do
   @moduledoc """
   Sample ATT application that can control the Govee LED Light Bulb
 
