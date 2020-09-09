@@ -8,7 +8,9 @@ use Mix.Config
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
-config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
+config :nerves, :firmware,
+  rootfs_overlay: "rootfs_overlay",
+  fwup_conf: "config/fwup.conf"
 
 # Cannot write update files to a read-only file system. Plus we don't need
 # accurate timezones
