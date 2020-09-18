@@ -76,7 +76,7 @@ defmodule Ui.MixProject do
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 
   defp dep(:blue_heron, :github),
-    do: {:blue_heron, github: "smartrent/blue_heron", branch: "vendor-specific", sparse: "blue_heron", override: true}
+    do: {:blue_heron, github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron", override: true}
 
   defp dep(:blue_heron, :path),
     do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
@@ -87,7 +87,7 @@ defmodule Ui.MixProject do
     do:
       {:blue_heron_transport_usb,
        github: "smartrent/blue_heron",
-       branch: "vendor-specific",
+       branch: "main",
        sparse: "blue_heron_transport_usb"}
 
   defp dep(:blue_heron_transport_usb, :path),
