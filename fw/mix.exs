@@ -70,8 +70,8 @@ defmodule Fw.MixProject do
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :path),
-      dep(:blue_heron_transport_uart, :path)
+      dep(:blue_heron, :github),
+      dep(:blue_heron_transport_uart, :github)
     ]
     |> List.flatten()
   end
@@ -97,7 +97,7 @@ defmodule Fw.MixProject do
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 
   defp dep(:blue_heron, :github),
-    do: {:blue_heron, github: "smartrent/blue_heron", branch: "vendor-specific", sparse: "blue_heron", override: true}
+    do: {:blue_heron, github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron", override: true}
 
   defp dep(:blue_heron, :path),
     do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
@@ -108,7 +108,7 @@ defmodule Fw.MixProject do
     do:
       {:blue_heron_transport_uart,
        github: "smartrent/blue_heron",
-       branch: "vendor-specific",
+       branch: "main",
        sparse: "blue_heron_transport_uart"}
 
   defp dep(:blue_heron_transport_uart, :path),

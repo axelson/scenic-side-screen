@@ -1,6 +1,6 @@
 %{
-  "blue_heron": {:hex, :blue_heron, "0.1.0", "eba980dc10030f5c66e1ec92e693524d9aa92a0c7b3acec7baa19278efa1676d", [:mix], [{:ex_bin, "~> 0.4", [hex: :ex_bin, repo: "hexpm", optional: false]}], "hexpm", "b2600081d8e05d3d56748401e53c06eab888591b4289f47a36f746efed9e6b2b"},
-  "blue_heron_transport_uart": {:hex, :blue_heron_transport_uart, "0.1.0", "ba490e7ee45a94b3ea448b0f62a1571e4eb73eeabdc1d7539381d70ac856bb63", [:mix], [{:blue_heron, "~> 0.1.0", [hex: :blue_heron, repo: "hexpm", optional: false]}, {:circuits_uart, "~> 1.4", [hex: :circuits_uart, repo: "hexpm", optional: false]}], "hexpm", "ef9484a5f13b2d7e847af5348641e0da8f7eab4d47c52062e0ab6ef51d04c1c4"},
+  "blue_heron": {:git, "https://github.com/smartrent/blue_heron.git", "191337854fb2e55c64350218d345bdc284d0b08a", [branch: "main", sparse: "blue_heron"]},
+  "blue_heron_transport_uart": {:git, "https://github.com/smartrent/blue_heron.git", "191337854fb2e55c64350218d345bdc284d0b08a", [branch: "main", sparse: "blue_heron_transport_uart"]},
   "boundary": {:hex, :boundary, "0.4.4", "46dbe9bd7b1565a69ef7c83e4964c480e1079686c7ffaed1d5942fb4691f8ebe", [:mix], [], "hexpm", "d6adb866b283812bf3fb7177ac88e36fab4d011ae58a8aa7edfa61ba6736cb3e"},
   "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], [], "hexpm", "7af5c7e09fe1d40f76c8e4f9dd2be7cebd83909f31fee7cd0e9eadc567da8353"},
   "castore": {:hex, :castore, "0.1.6", "2da0dccb3eacb67841d11790598ff03cd5caee861e01fad61dce1376b5da28e6", [:mix], [], "hexpm", "f874c510b720d31dd6334e9ae5c859a06a3c9e67dfe1a195c512e57588556d3f"},
