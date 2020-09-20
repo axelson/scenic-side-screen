@@ -18,7 +18,8 @@ config :govee_phx, GoveePhxWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
+      # Might need to make this configurable based on the dependency type
+      cd: Path.expand("~/dev/govee_phx/assets", __DIR__)
     ]
   ]
 
