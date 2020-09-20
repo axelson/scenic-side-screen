@@ -26,6 +26,7 @@ defmodule Ui.MixProject do
       dep(:piano_ui, :github),
       dep(:piano_ctl, :github),
       dep(:pomodoro, :github),
+      dep(:govee_phx, :path),
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
@@ -57,6 +58,9 @@ defmodule Ui.MixProject do
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro"}
+
+  defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
+  defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
 
   defp dep(:scenic_live_reload, :hex), do: {:scenic_live_reload, "~> 0.1", only: :dev}
 

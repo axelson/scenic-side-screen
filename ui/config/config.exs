@@ -4,6 +4,8 @@ use Mix.Config
 config :tzdata, :autoupdate, :disabled
 config :phoenix, :json_library, Jason
 
+config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
+
 # Configure the main viewport for the Scenic application
 config :play, :viewport, %{
   name: :main_viewport,
@@ -21,8 +23,12 @@ config :play, :viewport, %{
   ]
 }
 
-config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
-# config :logger, :console, format: "[$level] $message\n"
+config :govee_phx, GoveePhxWeb.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
+  render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: GoveePhx.PubSub,
+  live_view: [signing_salt: "3J2S31Z1"]
 
 config :launcher, refresh_enabled: true
 
@@ -52,3 +58,5 @@ case Mix.env() do
   _ ->
     nil
 end
+
+import_config "#{Mix.env()}.exs"
