@@ -26,7 +26,7 @@ defmodule Ui.MixProject do
       dep(:piano_ui, :github),
       dep(:piano_ctl, :github),
       dep(:pomodoro, :github),
-      dep(:govee_phx, :path),
+      dep(:govee_phx, :github),
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
