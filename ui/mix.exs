@@ -21,12 +21,14 @@ defmodule Ui.MixProject do
   defp deps do
     [
       # Part of the application
-      dep(:play, :github),
-      dep(:launcher, :github),
-      dep(:piano_ui, :github),
-      dep(:piano_ctl, :github),
-      dep(:pomodoro, :github),
       dep(:govee_phx, :github),
+      dep(:launcher, :github),
+      dep(:piano_ctl, :github),
+      dep(:piano_ui, :github),
+      dep(:play, :github),
+      dep(:pomodoro, :github),
+      # {:govee_semaphore, path: "~/dev/govee_semaphore", override: true},
+      {:exsync, path: "~/dev/forks/exsync", override: true},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},

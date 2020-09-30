@@ -19,7 +19,8 @@ config :govee_phx, GoveePhxWeb.Endpoint,
       "development",
       "--watch-stdin",
       # Might need to make this configurable based on the dependency type
-      cd: Path.expand("~/dev/govee_phx/assets", __DIR__)
+      # cd: Path.expand("~/dev/govee_phx/assets", __DIR__)
+      cd: Path.expand("../deps/govee_phx/assets", __DIR__)
     ]
   ]
 
@@ -28,8 +29,9 @@ config :govee_phx, GoveePhxWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/govee_phx_web/(live|views)/.*(ex)$",
+      # ~r"~/dev/govee_phx/lib/govee_phx_web/(live|views)/.*(ex)$",
+      ~r"../deps/govee_phx/lib/govee_phx_web/(live|views)/.*(ex)$",
       ~r"lib/govee_phx_web/templates/.*(eex)$"
     ]
-  ]
-
+  ],
+  reloadable_apps: [:govee, :govee_phx, :notes, :launcher]
