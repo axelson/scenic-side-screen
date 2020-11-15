@@ -39,7 +39,7 @@ defmodule Fw.MixProject do
   def application do
     [
       mod: {Fw.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:sasl, :logger, :runtime_tools]
     ]
   end
 
@@ -47,11 +47,14 @@ defmodule Fw.MixProject do
   defp deps do
     [
       # Part of the application
+      dep(:govee, :github),
+      dep(:govee_phx, :github),
+      dep(:govee_semaphore, :github),
       dep(:launcher, :github),
+      dep(:piano_ctl, :github),
+      dep(:piano_ui, :github),
       dep(:play, :github),
       dep(:pomodoro, :github),
-      dep(:piano_ui, :github),
-      dep(:piano_ctl, :github),
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
@@ -70,7 +73,7 @@ defmodule Fw.MixProject do
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :github),
+      dep(:blue_heron, :github_rpi3),
       dep(:blue_heron_transport_uart, :github)
     ]
     |> List.flatten()
@@ -94,22 +97,30 @@ defmodule Fw.MixProject do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
 
+  defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
+  defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
+
+  defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
+  defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
+
+  defp dep(:govee_semaphore, :github), do: {:govee_semaphore, github: "axelson/govee_semaphore"}
+  defp dep(:govee_semaphore, :path), do: {:govee_semaphore, path: "../../govee_semaphore", override: true}
+
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 
   defp dep(:blue_heron, :github),
-    do: {:blue_heron, github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron", override: true}
+    do: {:blue_heron, github: "blue-heron/blue_heron", branch: "main", override: true}
+
+  defp dep(:blue_heron, :github_rpi3),
+    do: {:blue_heron, github: "axelson/blue_heron", branch: "rpi3-fix", override: true}
 
   defp dep(:blue_heron, :path),
-    do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
+    do: {:blue_heron, path: "~/dev/forks/blue_heron", override: true}
 
   defp dep(:blue_heron_transport_uart, :hex), do: {:blue_heron_transport_uart, ">= 0.0.0"}
 
   defp dep(:blue_heron_transport_uart, :github),
-    do:
-      {:blue_heron_transport_uart,
-       github: "smartrent/blue_heron",
-       branch: "main",
-       sparse: "blue_heron_transport_uart"}
+    do: {:blue_heron_transport_uart, github: "blue-heron/blue_heron_transport_uart", branch: "main"}
 
   defp dep(:blue_heron_transport_uart, :path),
     do: {:blue_heron_transport_uart, path: "~/dev/forks/blue_heron/blue_heron_transport_uart"}

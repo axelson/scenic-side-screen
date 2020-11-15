@@ -28,7 +28,9 @@ config :shoehorn,
 # See https://hexdocs.pm/ring_logger/readme.html for more information on
 # configuring ring_logger.
 
-config :logger, backends: [RamoopsLogger, RingLogger]
+config :logger, backends: [RamoopsLogger, RingLogger],
+  handle_otp_reports: true,
+  handle_sasl_reports: true
 
 # Authorize the device to receive firmware using your public key.
 # See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
@@ -102,6 +104,45 @@ config :play, :viewport, %{
     }
   ]
 }
+
+config :phoenix, :json_library, Jason
+
+config :govee_phx, GoveePhxWeb.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
+  render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: GoveePhx.PubSub,
+  live_view: [signing_salt: "3J2S31Z1"],
+  check_origin: false,
+  server: true
+
+config :govee_phx, GoveePhxWeb.Endpoint,
+  http: [port: 80],
+  url: [host: System.get_env("NODE_HOST"), port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json"
+
+config :govee_phx,
+  govee_ble_devices: [
+    [
+      type: :h6001,
+      addr: 0xA4C138EC49BD
+    ],
+    [
+      type: :h6001,
+      addr: 0xA4C1385184DA
+    ],
+    [
+      type: :h6159,
+      addr: 0xA4C138668E6F
+    ]
+  ]
+
+config :govee_phx,
+  transport_config: %{
+    device: "ttyAMA0",
+    uart_opts: [speed: 115_200],
+  },
+  transport_type: :uart
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
