@@ -56,6 +56,9 @@ defmodule Fw.MixProject do
       dep(:play, :github),
       dep(:pomodoro, :github),
 
+      # Temporary
+      {:boundary, github: "sasa1977/boundary", branch: "fix-node-crash", runtime: false, override: true},
+
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.0.0", only: :dev, runtime: false},
@@ -91,11 +94,12 @@ defmodule Fw.MixProject do
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro"}
 
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
-  defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui"}
+  defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}
 
   defp dep(:piano_ctl, :github) do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
+  defp dep(:piano_ctl, :path), do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true, runtime: false}
 
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
