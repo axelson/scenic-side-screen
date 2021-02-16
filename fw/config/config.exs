@@ -41,6 +41,7 @@ key_paths =
     ".ssh/id_rsa.pub",
     ".ssh/id_desktop_rsa.pub",
     ".ssh/id_laptop_rsa.pub",
+    ".ssh/id_nerves.pub",
     ".ssh/id_air_laptop.pub"
   ]
   |> Enum.map(fn path -> Path.join(System.user_home!(), path) end)
