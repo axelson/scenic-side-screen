@@ -51,8 +51,8 @@ defmodule Fw.MixProject do
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
       dep(:launcher, :github),
-      dep(:piano_ctl, :github),
-      dep(:piano_ui, :github),
+      dep(:piano_ctl, :path),
+      dep(:piano_ui, :path),
       dep(:play, :github),
       dep(:pomodoro, :github),
 
