@@ -7,7 +7,8 @@ defmodule Fw.Backlight do
   # Partially inspired by
   # https://github.com/jjcarstens/hub/blob/c3f5bb947dd79fa26aa2c654a498da75ea2c4713/atm/lib/atm/session.ex#L134
   @brightness_file "/sys/class/backlight/rpi_backlight/brightness"
-  @sys_backlight "/sys/class/backlight/rpi_backlight/bl_power"
+  # TODO: use this backlight file
+  # @sys_backlight "/sys/class/backlight/rpi_backlight/bl_power"
 
   # Public API
 
