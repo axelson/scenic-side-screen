@@ -66,7 +66,9 @@ defmodule Fw.MixProject do
       {:nerves_firmware_ssh, ">= 0.0.0", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
-      {:nerves_system_rpi3, "~> 1.8", runtime: false, targets: :rpi3},
+      # Not able to update to version 1.13.2+ because I don't know how to turn
+      # off the backlight
+      {:nerves_system_rpi3, "1.13.0", runtime: false, targets: :rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
