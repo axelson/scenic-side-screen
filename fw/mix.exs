@@ -57,7 +57,8 @@ defmodule Fw.MixProject do
       dep(:pomodoro, :github),
 
       # Temporary
-      {:boundary, github: "sasa1977/boundary", branch: "fix-node-crash", runtime: false, override: true},
+      {:boundary,
+       github: "sasa1977/boundary", branch: "fix-node-crash", runtime: false, override: true},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
@@ -101,7 +102,9 @@ defmodule Fw.MixProject do
   defp dep(:piano_ctl, :github) do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
-  defp dep(:piano_ctl, :path), do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true, runtime: false}
+
+  defp dep(:piano_ctl, :path),
+    do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true, runtime: false}
 
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
@@ -110,7 +113,9 @@ defmodule Fw.MixProject do
   defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
 
   defp dep(:govee_semaphore, :github), do: {:govee_semaphore, github: "axelson/govee_semaphore"}
-  defp dep(:govee_semaphore, :path), do: {:govee_semaphore, path: "../../govee_semaphore", override: true}
+
+  defp dep(:govee_semaphore, :path),
+    do: {:govee_semaphore, path: "../../govee_semaphore", override: true}
 
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 
@@ -126,7 +131,8 @@ defmodule Fw.MixProject do
   defp dep(:blue_heron_transport_uart, :hex), do: {:blue_heron_transport_uart, ">= 0.0.0"}
 
   defp dep(:blue_heron_transport_uart, :github),
-    do: {:blue_heron_transport_uart, github: "blue-heron/blue_heron_transport_uart", branch: "main"}
+    do:
+      {:blue_heron_transport_uart, github: "blue-heron/blue_heron_transport_uart", branch: "main"}
 
   defp dep(:blue_heron_transport_uart, :path),
     do: {:blue_heron_transport_uart, path: "~/dev/forks/blue_heron/blue_heron_transport_uart"}

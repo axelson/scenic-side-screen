@@ -28,7 +28,8 @@ config :shoehorn,
 # See https://hexdocs.pm/ring_logger/readme.html for more information on
 # configuring ring_logger.
 
-config :logger, backends: [RamoopsLogger, RingLogger],
+config :logger,
+  backends: [RamoopsLogger, RingLogger],
   handle_otp_reports: true,
   handle_sasl_reports: true
 
@@ -143,7 +144,7 @@ config :govee_phx,
 config :govee_phx,
   transport_config: %{
     device: "ttyAMA0",
-    uart_opts: [speed: 115_200],
+    uart_opts: [speed: 115_200]
   },
   transport_type: :uart
 
