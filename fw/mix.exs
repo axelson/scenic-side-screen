@@ -76,7 +76,7 @@ defmodule Fw.MixProject do
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :github_rpi3),
+      dep(:blue_heron, :path),
       dep(:blue_heron_transport_uart, :github)
     ]
     |> List.flatten()

@@ -32,6 +32,8 @@ config :logger, backends: [RamoopsLogger, RingLogger],
   handle_otp_reports: true,
   handle_sasl_reports: true
 
+config :blue_heron, log_hci_dump_file: false
+
 # Authorize the device to receive firmware using your public key.
 # See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
 # on configuring nerves_firmware_ssh.
