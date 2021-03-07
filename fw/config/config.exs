@@ -88,6 +88,15 @@ ctl_node =
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
+config :piano_ui, ecto_repos: [PianoUi.Repo]
+
+config :piano_ui, PianoUi.Repo,
+  database: "/data/piano_ui_database.db",
+  journal_mode: :wal,
+  cache_size: -64000,
+  temp_store: :memory,
+  pool_size: 1
+
 
 # TODO: Can we configure something else here? Maybe the launcher itself?
 # Actually need to ensure that play is not reading from these configs
@@ -147,6 +156,7 @@ config :govee_phx,
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
+
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
