@@ -14,25 +14,27 @@ defmodule Ui.MixProject do
   def application do
     [
       mod: {UiApplication, []},
-      extra_applications: [:logger]
+      extra_applications: [:sasl, :logger]
     ]
   end
 
   defp deps do
     [
       # Part of the application
+      dep(:govee, :github),
       dep(:govee_phx, :github),
+      dep(:govee_semaphore, :github),
       dep(:launcher, :github),
-      dep(:piano_ctl, :github),
-      dep(:piano_ui, :github),
+      dep(:piano_ctl, :path),
+      dep(:piano_ui, :path),
       dep(:play, :github),
       dep(:pomodoro, :github),
-      # {:govee_semaphore, path: "~/dev/govee_semaphore", override: true},
       {:exsync, path: "~/dev/forks/exsync", override: true},
+      {:exqlite, github: "warmwaffles/exqlite", ref: "60d365e46", override: true},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.0.0", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :hex),
       {:scenic, "~> 0.10"},
       {:scenic_driver_glfw, "~> 0.10"},
@@ -59,10 +61,18 @@ defmodule Ui.MixProject do
     do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
-  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro"}
+  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
+
+  defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
+  defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
 
   defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
   defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
+
+  defp dep(:govee_semaphore, :github), do: {:govee_semaphore, github: "axelson/govee_semaphore"}
+
+  defp dep(:govee_semaphore, :path),
+    do: {:govee_semaphore, path: "../../govee_semaphore", override: true}
 
   defp dep(:scenic_live_reload, :hex), do: {:scenic_live_reload, "~> 0.1", only: :dev}
 
@@ -78,6 +88,7 @@ defmodule Ui.MixProject do
   defp dep(:piano_ctl, :github) do
     {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
   end
+  defp dep(:piano_ctl, :path), do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl"}
 
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 

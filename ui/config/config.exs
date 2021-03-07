@@ -49,6 +49,31 @@ config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
+config :piano_ctl, libcluster_hosts: []
+
+config :govee_phx,
+  govee_ble_devices: [
+    #[
+    #  type: :h6001,
+    #  addr: 0xA4C138EC49BD
+    #],
+    #[
+    #  type: :h6001,
+    #  addr: 0xA4C1385184DA
+    #],
+    #[
+    #  type: :h6159,
+    #  addr: 0xA4C138668E6F
+    #]
+  ]
+
+config :govee_phx,
+  transport_config: %{
+    vid: 0x0A5C,
+    pid: 0x21E8
+  },
+  transport_type: :usb
+
 case Mix.env() do
   :dev ->
     config :exsync,

@@ -24,3 +24,5 @@ ui-*.tar
 
 # Environment file
 .env
+
+/priv/database.*
