@@ -21,8 +21,23 @@ config :tzdata, :autoupdate, :disabled
 # involved with firmware updates.
 
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_init_gadget],
+  init: [:nerves_runtime, :nerves_pack],
   app: Mix.Project.config()[:app]
+
+# Nerves Runtime can enumerate hardware devices and send notifications via
+# SystemRegistry. This slows down startup and not many programs make use of
+# this feature.
+
+config :nerves_runtime, :kernel, use_system_registry: false
+
+# Erlinit can be configured without a rootfs_overlay. See
+# https://github.com/nerves-project/erlinit/ for more information on
+# configuring erlinit.
+
+config :nerves,
+  erlinit: [
+    hostname_pattern: "nerves-%s"
+  ]
 
 # Use Ringlogger as the logger backend and remove :console.
 # See https://hexdocs.pm/ring_logger/readme.html for more information on
@@ -34,10 +49,6 @@ config :logger,
   handle_sasl_reports: true
 
 config :blue_heron, log_hci_dump_file: false
-
-# Authorize the device to receive firmware using your public key.
-# See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
-# on configuring nerves_firmware_ssh.
 
 key_paths =
   [
@@ -57,17 +68,54 @@ authorized_keys =
 if Enum.empty?(authorized_keys),
   do: Mix.raise("No SSH Keys found. Please generate an ssh key")
 
-config :nerves_firmware_ssh,
+config :nerves_ssh,
   authorized_keys: authorized_keys
 
-# Configure nerves_init_gadget.
-# See https://hexdocs.pm/nerves_init_gadget/readme.html for more information.
+# Configure the network using vintage_net
+# See https://github.com/nerves-networking/vintage_net for more information
+config :vintage_net,
+  regulatory_domain: "US",
+  config: [
+    #{"usb0", %{type: VintageNetDirect}},
+    {"eth0",
+     %{
+       type: VintageNetEthernet,
+       ipv4: %{method: :dhcp}
+     }},
+    #{"wlan0", %{type: VintageNetWiFi}}
+  ]
 
-config :nerves_init_gadget,
-  ifname: "eth0",
-  address_method: :dhcp,
-  node_name: "murphy",
-  node_host: System.get_env("NODE_HOST")
+config :mdns_lite,
+  # The `host` key specifies what hostnames mdns_lite advertises.  `:hostname`
+  # advertises the device's hostname.local. For the official Nerves systems, this
+  # is "nerves-<4 digit serial#>.local".  mdns_lite also advertises
+  # "nerves.local" for convenience. If more than one Nerves device is on the
+  # network, delete "nerves" from the list.
+
+  host: [:hostname, "nerves"],
+  ttl: 120,
+
+  # Advertise the following services over mDNS.
+  services: [
+    %{
+      name: "SSH Remote Login Protocol",
+      protocol: "ssh",
+      transport: "tcp",
+      port: 22
+    },
+    %{
+      name: "Secure File Transfer Protocol over SSH",
+      protocol: "sftp-ssh",
+      transport: "tcp",
+      port: 22
+    },
+    %{
+      name: "Erlang Port Mapper Daemon",
+      protocol: "epmd",
+      transport: "tcp",
+      port: 4369
+    }
+  ]
 
 config :launcher, :backlight_module, Fw.Backlight
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
@@ -85,9 +133,12 @@ ctl_node =
     node -> String.to_atom(node)
   end
 
+config :fw, nodes: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
+
 config :ui, ecto_repos: [PianoUi.Repo]
 config :piano_ui, :ctl_node, ctl_node
-config :piano_ui, libcluster_hosts: [ctl_node]
+# config :piano_ui, libcluster_hosts: [ctl_node]
+config :piano_ui, libcluster_hosts: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
 config :piano_ui, PianoUi.Repo,

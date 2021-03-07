@@ -64,8 +64,7 @@ defmodule Fw.MixProject do
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
-      {:nerves_firmware_ssh, ">= 0.0.0", targets: @all_targets},
-      {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
+      {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       # Not able to update to version 1.13.2+ because I don't know how to turn
       # off the backlight
