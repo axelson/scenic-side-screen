@@ -117,18 +117,6 @@ config :mdns_lite,
     }
   ]
 
-# Configure nerves_init_gadget.
-# See https://hexdocs.pm/nerves_init_gadget/readme.html for more information.
-
-# config :nerves_init_gadget,
-#   ifname: "eth0",
-#   address_method: :dhcp,
-#   node_name: "murphy",
-#   node_host: System.get_env("NODE_HOST")
-
-# config :nerves_pack,
-# lj
-
 config :launcher, :backlight_module, Fw.Backlight
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
@@ -145,9 +133,12 @@ ctl_node =
     node -> String.to_atom(node)
   end
 
+config :fw, nodes: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
+
 config :ui, ecto_repos: [PianoUi.Repo]
 config :piano_ui, :ctl_node, ctl_node
-config :piano_ui, libcluster_hosts: [ctl_node]
+# config :piano_ui, libcluster_hosts: [ctl_node]
+config :piano_ui, libcluster_hosts: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
 config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
 
 config :piano_ui, PianoUi.Repo,
