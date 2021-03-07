@@ -11,7 +11,7 @@ To run the Nerves app:
     * If it's the first time then run `mix firmware.burn`
     * If you are already running the code then `./upload.sh nerves.local`
       Note: This requires an ssh key (see
-      [nerves_firmware_ssh](https://github.com/nerves-project/nerves_firmware_ssh)
+      [nerves_ssh](https://github.com/nerves-project/nerves_ssh)
       for details)
 
 `dotenv` (from node or RubyGems) is required to set a value for `SLACK_TOKEN` which is used to connect to Slack
