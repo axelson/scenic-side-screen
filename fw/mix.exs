@@ -54,13 +54,10 @@ defmodule Fw.MixProject do
       dep(:piano_ctl, :path),
       dep(:piano_ui, :path),
       dep(:play, :github),
-      dep(:pomodoro, :github),
-
-      # Temporary
-      {:boundary,
-       github: "sasa1977/boundary", branch: "fix-node-crash", runtime: false, override: true},
+      dep(:pomodoro, :path),
 
       # Supporting
+      {:boundary, "~> 0.8.0"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
@@ -93,7 +90,7 @@ defmodule Fw.MixProject do
     do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
-  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro"}
+  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
 
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}
