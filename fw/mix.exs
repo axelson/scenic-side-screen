@@ -55,6 +55,7 @@ defmodule Fw.MixProject do
       dep(:piano_ui, :path),
       dep(:play, :github),
       dep(:pomodoro, :path),
+      {:livebook, "~> 0.1.0", only: [:dev, :prod]},
 
       # Supporting
       {:boundary, "~> 0.8.0"},
@@ -70,7 +71,8 @@ defmodule Fw.MixProject do
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
       {:ring_logger, "~> 0.4"},
-      {:scenic, "~> 0.10", targets: @all_targets, override: true},
+      # {:scenic, "0.10.3", targets: @all_targets, override: true},
+      {:scenic, "0.10.3", override: true},
       {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
       {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
       {:shoehorn, "~> 0.4"},

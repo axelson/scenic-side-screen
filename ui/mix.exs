@@ -30,13 +30,14 @@ defmodule Ui.MixProject do
       dep(:play, :github),
       dep(:pomodoro, :github),
       {:exsync, path: "~/dev/forks/exsync", override: true},
-      {:exqlite, github: "warmwaffles/exqlite", ref: "60d365e46", override: true},
+      {:exqlite, "~> 0.6.1"},
+      # {:exqlite, github: "warmwaffles/exqlite", ref: "60d365e46", override: true},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :hex),
-      {:scenic, "~> 0.10"},
+      {:scenic, "0.10.3"},
       {:scenic_driver_glfw, "~> 0.10"},
       dep(:scenic_live_reload, :hex),
       dep(:blue_heron, :github),
@@ -66,7 +67,7 @@ defmodule Ui.MixProject do
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
 
-  defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
+  defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx", branch: "master"}
   defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
 
   defp dep(:govee_semaphore, :github), do: {:govee_semaphore, github: "axelson/govee_semaphore"}

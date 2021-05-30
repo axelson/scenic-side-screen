@@ -12,6 +12,27 @@ config :nerves, :firmware,
   rootfs_overlay: "rootfs_overlay",
   fwup_conf: "config/fwup.conf"
 
+config :livebook,
+  default_runtime: Livebook.Runtime.Embedded,
+  authentication_mode: :password,
+  token_authentication: false,
+  root_path: "/data/livebooks",
+  cookie: :fw_cookie,
+  node: {:longnames, :"ui@192.168.1.6"},
+  password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
+
+config :livebook, LivebookWeb.Endpoint,
+  http: [
+    port: 4000,
+    transport_options: [socket_opts: [:inet6]]
+  ],
+  secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
+  pubsub_server: Livebook.PubSub,
+  live_view: [signing_salt: "livebook"],
+  check_origin: false,
+  code_reloader: false,
+  server: true
+
 # Cannot write update files to a read-only file system. Plus we don't need
 # accurate timezones
 config :tzdata, :autoupdate, :disabled
@@ -34,10 +55,9 @@ config :nerves_runtime, :kernel, use_system_registry: false
 # https://github.com/nerves-project/erlinit/ for more information on
 # configuring erlinit.
 
-config :nerves,
-  erlinit: [
-    hostname_pattern: "nerves-%s"
-  ]
+config :nerves, :erlinit,
+  hostname_pattern: "nerves-%s",
+  shutdown_report: "/data/last_shutdown.txt"
 
 # Use Ringlogger as the logger backend and remove :console.
 # See https://hexdocs.pm/ring_logger/readme.html for more information on
@@ -124,7 +144,7 @@ config :launcher,
   scenes: [
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
-    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
+    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, []}}
   ]
 
 ctl_node =

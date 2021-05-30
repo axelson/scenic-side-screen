@@ -9,6 +9,7 @@ defmodule Fw.Application do
   use Application
 
   def start(_type, _args) do
+    Fw.Livebook.initialize_data_directory()
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Fw.Supervisor]

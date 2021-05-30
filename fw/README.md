@@ -1,4 +1,4 @@
-`dotenv mix firmware && ./upload.sh 192.168.1.6`
+`dotenv mix compile --warnings-as-errors && dotenv mix firmware && mix upload 192.168.1.6`
 
 # Default instructions
 

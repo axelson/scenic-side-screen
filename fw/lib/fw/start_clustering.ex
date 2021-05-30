@@ -15,7 +15,7 @@ defmodule Fw.StartClustering do
   @impl GenServer
   def handle_continue(:start_epmd, state) do
     {"", 0} = System.cmd("epmd", ["-daemon"])
-    {:ok, _pid} = Node.start(:"murphy@192.168.1.6")
+    _ = Node.start(:"murphy@192.168.1.6")
 
     {:noreply, state}
   end
