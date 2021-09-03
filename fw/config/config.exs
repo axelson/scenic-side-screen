@@ -64,9 +64,7 @@ config :nerves, :erlinit,
 # configuring ring_logger.
 
 config :logger,
-  backends: [RamoopsLogger, RingLogger],
-  handle_otp_reports: true,
-  handle_sasl_reports: true
+  backends: [RamoopsLogger, RingLogger]
 
 config :blue_heron, log_hci_dump_file: false
 
