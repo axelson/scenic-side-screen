@@ -39,7 +39,7 @@ defmodule Fw.MixProject do
   def application do
     [
       mod: {Fw.Application, []},
-      extra_applications: [:sasl, :logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
