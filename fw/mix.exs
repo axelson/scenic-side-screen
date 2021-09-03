@@ -133,5 +133,5 @@ defmodule Fw.MixProject do
       {:blue_heron_transport_uart, github: "blue-heron/blue_heron_transport_uart", branch: "main"}
 
   defp dep(:blue_heron_transport_uart, :path),
-    do: {:blue_heron_transport_uart, path: "~/dev/forks/blue_heron/blue_heron_transport_uart"}
+    do: {:blue_heron_transport_uart, path: "~/dev/forks/blue_heron_transport_uart"}
 end

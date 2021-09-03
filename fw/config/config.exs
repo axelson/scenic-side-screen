@@ -18,13 +18,13 @@ config :livebook,
   token_authentication: false,
   root_path: "/data/livebooks",
   cookie: :fw_cookie,
-  node: {:longnames, :"ui@192.168.1.6"},
+  node: {:longnames, :"fw@192.168.1.6"},
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
 
 config :livebook, LivebookWeb.Endpoint,
   http: [
     port: 4000,
-    transport_options: [socket_opts: [:inet6]]
+    transport_options: [socket_opts: [:inet6], num_acceptors: 2]
   ],
   secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
   pubsub_server: Livebook.PubSub,
@@ -201,24 +201,25 @@ config :govee_phx, GoveePhxWeb.Endpoint,
   server: true
 
 config :govee_phx, GoveePhxWeb.Endpoint,
-  http: [port: 80],
+  http: [port: 80, transport_options: [num_acceptors: 2]],
   url: [host: System.get_env("NODE_HOST"), port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 config :govee_phx,
   govee_ble_devices: [
+    # Main govee light
     [
       type: :h6001,
       addr: 0xA4C138EC49BD
-    ],
-    [
-      type: :h6001,
-      addr: 0xA4C1385184DA
-    ],
-    [
-      type: :h6159,
-      addr: 0xA4C138668E6F
     ]
+    # [
+    #   type: :h6001,
+    #   addr: 0xA4C1385184DA
+    # ],
+    # [
+    #   type: :h6159,
+    #   addr: 0xA4C138668E6F
+    # ]
   ]
 
 config :govee_phx,
