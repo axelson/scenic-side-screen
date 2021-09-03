@@ -20,9 +20,8 @@ disable_splash=1
 gpu_mem=192
 
 # Enable I2C, SPI, and audio
-dtparam=i2c_arm=on
-dtparam=spi=on
-dtparam=audio=on
+dtparam=i2c_arm=on,spi=on,audio=on
+audio_pwm_mode=2
 
 # Enable drivers for the Raspberry Pi 7" Touchscreen
 #
