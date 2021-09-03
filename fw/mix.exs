@@ -56,6 +56,7 @@ defmodule Fw.MixProject do
       dep(:play, :github),
       dep(:pomodoro, :path),
       {:livebook, "~> 0.1.0", only: [:dev, :prod]},
+      #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
       # Supporting
       {:boundary, "~> 0.8.0"},
