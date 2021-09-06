@@ -68,6 +68,9 @@ config :logger,
 
 config :blue_heron, log_hci_dump_file: false
 
+config :scenic, :assets,
+   module: Fw.Assets
+
 key_paths =
   [
     ".ssh/id_rsa.pub",
@@ -140,7 +143,7 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
 config :launcher,
   scenes: [
-    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    # {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
     {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, []}}
   ]
@@ -153,11 +156,11 @@ ctl_node =
 
 config :fw, nodes: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
 
-config :ui, ecto_repos: [PianoUi.Repo]
+config :fw, ecto_repos: [PianoUi.Repo]
 config :piano_ui, :ctl_node, ctl_node
 # config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, libcluster_hosts: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
-config :piano_ui, :album_cache_dir, System.tmp_dir!() <> "/piano_ex_album_art/"
+config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
 
 config :piano_ui, PianoUi.Repo,
   database: "/data/piano_ui_database.db",
@@ -166,27 +169,20 @@ config :piano_ui, PianoUi.Repo,
   temp_store: :memory,
   pool_size: 1
 
-
-# TODO: Can we configure something else here? Maybe the launcher itself?
-# Actually need to ensure that play is not reading from these configs
-config :play, :viewport, %{
+config :fw, :viewport,
   name: :main_viewport,
   size: {800, 480},
-  # default_scene: {Play.Scene.Splash, Play.Scene.Asteroids},
   default_scene: {Launcher.Scene.Home, nil},
   drivers: [
-    %{
+    [
       module: Scenic.Driver.Nerves.Rpi
-    },
-    %{
+    ],
+    [
       module: Scenic.Driver.Nerves.Touch,
-      opts: [
-        device: "FT5406 memory based driver",
-        calibartion: {{1, 0, 0}, {1, 0, 0}}
-      ]
-    }
+      device: "FT5406 memory based driver",
+      calibration: {{1, 0, 0}, {0, 1, 0}}
+    ]
   ]
-}
 
 config :phoenix, :json_library, Jason
 

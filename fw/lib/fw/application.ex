@@ -25,7 +25,9 @@ defmodule Fw.Application do
   end
 
   def children(_target) do
+    main_viewport_config = Application.get_env(:fw, :viewport)
     [
+      {Scenic, [main_viewport_config]},
       # Starts a worker by calling: Fw.Worker.start_link(arg)
       # {Fw.Worker, arg},
       Fw.Backlight,

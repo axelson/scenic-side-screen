@@ -24,7 +24,8 @@ defmodule Fw.MixProject do
       overwrite: true,
       cookie: "#{@app}_cookie",
       include_erts: &Nerves.Release.erts/0,
-      steps: [&Nerves.Release.init/1, :assemble]
+      steps: [&Nerves.Release.init/1, :assemble],
+      strip_beams: Mix.env() == :prod or [keep: ["Docs"]]
     ]
   end
 
@@ -51,10 +52,10 @@ defmodule Fw.MixProject do
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
       dep(:launcher, :github),
-      dep(:piano_ctl, :path),
-      dep(:piano_ui, :path),
-      dep(:play, :github),
-      dep(:pomodoro, :path),
+      dep(:piano_ctl, :github),
+      dep(:piano_ui, :github),
+      # dep(:play, :github),
+      dep(:pomodoro, :github),
       {:livebook, "~> 0.1.0", only: [:dev, :prod]},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
@@ -73,12 +74,16 @@ defmodule Fw.MixProject do
       {:ramoops_logger, "~> 0.3.0"},
       {:ring_logger, "~> 0.4"},
       # {:scenic, "0.10.3", targets: @all_targets, override: true},
-      {:scenic, "0.10.3", override: true},
-      {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
-      {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
+      # {:scenic, "0.10.3", override: true},
+      # {:scenic, github: "boydm/scenic", ref: "23c84e5a46", override: true},
+      {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
+      # {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
+      {:scenic_driver_nerves_rpi, github: "boydm/scenic_driver_nerves_rpi", branch: "v0.11", targets: @all_targets},
+      # {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
+      {:scenic_driver_nerves_touch, github: "boydm/scenic_driver_nerves_touch", branch: "v0.11", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :path),
+      dep(:blue_heron, :hex),
       dep(:blue_heron_transport_uart, :github)
     ]
     |> List.flatten()
@@ -116,7 +121,7 @@ defmodule Fw.MixProject do
   defp dep(:govee_semaphore, :path),
     do: {:govee_semaphore, path: "../../govee_semaphore", override: true}
 
-  defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
+  defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0", override: true}
 
   defp dep(:blue_heron, :github),
     do: {:blue_heron, github: "blue-heron/blue_heron", branch: "main", override: true}

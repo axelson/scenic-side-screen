@@ -7,10 +7,7 @@ config :phoenix, :json_library, Jason
 config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
 
 config :scenic, :assets,
-   module: Ui.Assets,
-   alias: [
-     roboto: "fonts/roboto.ttf"
-   ]
+   module: Ui.Assets
 
 config :ui, :viewport,
   name: :main_viewport,
