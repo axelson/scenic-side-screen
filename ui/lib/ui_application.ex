@@ -1,7 +1,10 @@
 defmodule UiApplication do
+  @moduledoc false
+
   def start(_type, _args) do
-    main_viewport_config = Application.get_env(:play, :viewport)
+    main_viewport_config = Application.get_env(:ui, :viewport)
     children = [
+      {Scenic, [main_viewport_config]},
       {ScenicLiveReload, viewports: [main_viewport_config]}
     ]
 

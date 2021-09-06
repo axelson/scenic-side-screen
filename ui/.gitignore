@@ -26,3 +26,4 @@ ui-*.tar
 .env
 
 /priv/database.*
+/priv/__scenic

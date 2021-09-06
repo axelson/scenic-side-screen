@@ -6,22 +6,25 @@ config :phoenix, :json_library, Jason
 
 config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
 
-# Configure the main viewport for the Scenic application
-config :play, :viewport, %{
+config :scenic, :assets,
+   module: Ui.Assets,
+   alias: [
+     roboto: "fonts/roboto.ttf"
+   ]
+
+config :ui, :viewport,
   name: :main_viewport,
   size: {800, 480},
-  # default_scene: {Timer.Scene.Home, nil},
-  # default_scene: {Play.Scene.Asteroids, nil},
-  # default_scene: {Play.Scene.Splash, Play.Scene.Asteroids},
   default_scene: {Launcher.Scene.Home, nil},
   drivers: [
-    %{
+    [
       module: Scenic.Driver.Glfw,
       name: :glfw,
-      opts: [resizeable: false, title: "play"]
-    }
+      resizeable: false,
+      title: "Pomodoro Timer"
+    ]
   ]
-}
+
 
 config :govee_phx, GoveePhxWeb.Endpoint,
   url: [host: "localhost"],
@@ -34,9 +37,9 @@ config :launcher, refresh_enabled: true
 
 config :launcher,
   scenes: [
-    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    # {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
-    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, nil}}
+    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, []}}
   ]
 
 ctl_node =
@@ -44,6 +47,14 @@ ctl_node =
     nil -> nil
     node -> String.to_atom(node)
   end
+
+config :ui, ecto_repos: [PianoUi.Repo]
+config :piano_ui, PianoUi.Repo,
+  database: "/Users/jason/dev/scenic-side-screen/ui/piano_ui_database.db",
+  journal_mode: :wal,
+  cache_size: -64000,
+  temp_store: :memory,
+  pool_size: 1
 
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
@@ -68,11 +79,12 @@ config :govee_phx,
   ]
 
 config :govee_phx,
-  transport_config: %{
-    vid: 0x0A5C,
-    pid: 0x21E8
-  },
-  transport_type: :usb
+  # transport_config: %{
+  #   vid: 0x0A5C,
+  #   pid: 0x21E8
+  # },
+  # transport_type: :usb
+  transport_type: :disabled
 
 case Mix.env() do
   :dev ->
