@@ -68,8 +68,7 @@ config :logger,
 
 config :blue_heron, log_hci_dump_file: false
 
-config :scenic, :assets,
-   module: Fw.Assets
+config :scenic, :assets, module: Fw.Assets
 
 key_paths =
   [
@@ -97,13 +96,13 @@ config :nerves_ssh,
 config :vintage_net,
   regulatory_domain: "US",
   config: [
-    #{"usb0", %{type: VintageNetDirect}},
+    # {"usb0", %{type: VintageNetDirect}},
     {"eth0",
      %{
        type: VintageNetEthernet,
        ipv4: %{method: :dhcp}
-     }},
-    #{"wlan0", %{type: VintageNetWiFi}}
+     }}
+    # {"wlan0", %{type: VintageNetWiFi}}
   ]
 
 config :mdns_lite,
@@ -175,12 +174,7 @@ config :fw, :viewport,
   default_scene: {Launcher.Scene.Home, nil},
   drivers: [
     [
-      module: Scenic.Driver.Nerves.Rpi
-    ],
-    [
-      module: Scenic.Driver.Nerves.Touch,
-      device: "FT5406 memory based driver",
-      calibration: {{1, 0, 0}, {0, 1, 0}}
+      module: Scenic.Driver.Local
     ]
   ]
 
@@ -223,7 +217,6 @@ config :govee_phx,
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
-
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
