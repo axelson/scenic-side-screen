@@ -5,7 +5,8 @@ defmodule UiApplication do
     main_viewport_config = Application.get_env(:ui, :viewport)
     children = [
       {Scenic, [main_viewport_config]},
-      {ScenicLiveReload, viewports: [main_viewport_config]}
+      {ScenicLiveReload, viewports: [main_viewport_config]},
+      {Pomodoro.PomodoroTimer, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

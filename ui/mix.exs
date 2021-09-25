@@ -24,11 +24,11 @@ defmodule Ui.MixProject do
       dep(:govee, :github),
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
-      dep(:launcher, :github),
+      dep(:launcher, :path),
       dep(:piano_ctl, :github),
       dep(:piano_ui, :github),
       # dep(:play, :github),
-      dep(:pomodoro, :github),
+      dep(:pomodoro, :path),
       {:exsync, path: "~/dev/forks/exsync", override: true},
       {:exqlite, "~> 0.6.1"},
       # {:exqlite, github: "warmwaffles/exqlite", ref: "60d365e46", override: true},
@@ -62,7 +62,7 @@ defmodule Ui.MixProject do
     do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
-  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
+  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro/pomodoro", override: true}
 
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}

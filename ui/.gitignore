@@ -27,3 +27,4 @@ ui-*.tar
 
 /priv/database.*
 /priv/__scenic
+.nerves-live-reload

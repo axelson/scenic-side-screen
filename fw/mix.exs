@@ -51,11 +51,11 @@ defmodule Fw.MixProject do
       dep(:govee, :github),
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
-      dep(:launcher, :github),
+      dep(:launcher, :path),
       dep(:piano_ctl, :github),
       dep(:piano_ui, :github),
       # dep(:play, :github),
-      dep(:pomodoro, :github),
+      dep(:pomodoro, :path),
       {:livebook, "~> 0.1.0", only: [:dev, :prod]},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
@@ -98,7 +98,7 @@ defmodule Fw.MixProject do
     do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
-  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
+  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro/pomodoro", override: true}
 
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}

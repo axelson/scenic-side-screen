@@ -35,8 +35,8 @@ config :launcher, refresh_enabled: true
 config :launcher,
   scenes: [
     # {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
-    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, nil}},
-    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, []}}
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
+    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}}
   ]
 
 ctl_node =

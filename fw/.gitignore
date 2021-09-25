@@ -17,3 +17,4 @@ doc/
 erl_crash.dump
 
 .env
+.nerves-live-reload
