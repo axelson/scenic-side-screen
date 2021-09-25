@@ -25,7 +25,7 @@ defmodule Fw.MixProject do
       cookie: "#{@app}_cookie",
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble],
-      strip_beams: Mix.env() == :prod or [keep: ["Docs"]]
+      strip_beams: Mix.env() == :prod or [keep: ["Docs", "Dbgi"]]
     ]
   end
 
@@ -72,7 +72,9 @@ defmodule Fw.MixProject do
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
-      {:ring_logger, "~> 0.4"},
+      # {:ring_logger, "~> 0.4"},
+      {:ring_logger, github: "axelson/ring_logger", branch: "blame-exceptions", override: true},
+      # {:ring_logger, path: "deps/ring_logger", override: true},
       # {:scenic, "0.10.3", targets: @all_targets, override: true},
       # {:scenic, "0.10.3", override: true},
       # {:scenic, github: "boydm/scenic", ref: "23c84e5a46", override: true},
