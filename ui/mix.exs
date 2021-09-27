@@ -38,7 +38,7 @@ defmodule Ui.MixProject do
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :hex),
       {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
-      {:scenic_driver_glfw, github: "boydm/scenic_driver_glfw", branch: "v0.11"},
+      {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local"},
       dep(:scenic_live_reload, :path),
       dep(:blue_heron, :github),
       dep(:blue_heron_transport_usb, :github)

@@ -15,10 +15,10 @@ config :ui, :viewport,
   default_scene: {Launcher.Scene.Home, nil},
   drivers: [
     [
-      module: Scenic.Driver.Glfw,
-      name: :glfw,
-      resizeable: false,
-      title: "Pomodoro Timer"
+      module: Scenic.Driver.Local,
+      window: [
+        title: "My Scenic Companion"
+      ]
     ]
   ]
 
