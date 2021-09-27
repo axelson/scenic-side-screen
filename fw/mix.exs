@@ -1,7 +1,7 @@
 defmodule Fw.MixProject do
   use Mix.Project
 
-  @all_targets [:rpi3]
+  @all_targets [:rpi3, :jax_rpi3]
   @app :fw
 
   def project do
@@ -66,24 +66,18 @@ defmodule Fw.MixProject do
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
       {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
-      # Not able to update to version 1.13.2+ because I don't know how to turn
-      # off the backlight
-      {:nerves_system_rpi3, "1.13.0", runtime: false, targets: :rpi3},
+      {:nerves_system_rpi3, "1.17.0", runtime: false, targets: :rpi3},
+      # Needed for my RPI backlight patch
+      # https://github.com/nerves-project/nerves_system_rpi3/pull/216
+      {:jax_rpi3, github: "axelson/nerves_system_rpi3", ref: "v1.17.1", runtime: false, targets: :jax_rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
       # {:ring_logger, "~> 0.4"},
       {:ring_logger, github: "axelson/ring_logger", branch: "blame-exceptions", override: true},
       # {:ring_logger, path: "deps/ring_logger", override: true},
-      # {:scenic, "0.10.3", targets: @all_targets, override: true},
-      # {:scenic, "0.10.3", override: true},
-      # {:scenic, github: "boydm/scenic", ref: "23c84e5a46", override: true},
       {:scenic, github: "boydm/scenic", branch: "input_and_drivers", override: true},
-      # {:scenic_driver_nerves_rpi, "0.10.1", targets: @all_targets},
       {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", targets: @all_targets},
-      # {:scenic_driver_nerves_rpi, github: "boydm/scenic_driver_nerves_rpi", branch: "v0.11", targets: @all_targets},
-      # {:scenic_driver_nerves_touch, "0.10.0", targets: @all_targets},
-      # {:scenic_driver_nerves_touch, github: "boydm/scenic_driver_nerves_touch", branch: "v0.11", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
       dep(:blue_heron, :hex),
