@@ -225,7 +225,7 @@ config :govee_phx,
 
 config :govee_phx,
   transport_config: %{
-    device: "ttyAMA0",
+    device: "ttyS0",
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
