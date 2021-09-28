@@ -1,8 +1,8 @@
 %{
   "aws_signature": {:hex, :aws_signature, "0.1.0", "d582c6c2d3f95a5bdd94436a983ffc94bd3686ba8f221b440e90d013829e6c5f", [:rebar3], [], "hexpm", "f645f1e1f3e56eca3d6b8e8efdeb060fc7f4bb1eace1d204fb3dcd9ab68998a4"},
   "beam_notify": {:hex, :beam_notify, "0.2.1", "64f94f5b486b4cc96ef10a633188560cdd6ae2fccaf6fd746851cdc12b85d5f1", [:make, :mix], [{:elixir_make, "~> 0.6", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "d1b3a8d280867c43c2c53e61556ca5ad87e0907ad25797d2c753bac5d8b3dc44"},
-  "blue_heron": {:hex, :blue_heron, "0.2.0", "f617454aa84436dd1388bb507707abeb372ae98e7c6bfb5c15df4f9b4e447e0f", [:mix], [], "hexpm", "14989d30d8256050c4ab5503756a9de41438196ab204ea0bd6f0e6316bebe801"},
-  "blue_heron_transport_uart": {:git, "https://github.com/blue-heron/blue_heron_transport_uart.git", "1e73fc5e44d787064a2d2299eee37583a12c1566", [branch: "main"]},
+  "blue_heron": {:hex, :blue_heron, "0.2.1", "e41bffbef7478eccf09c548eddc6695e2675877b4a0b6682b451982e9493f5f8", [:mix], [], "hexpm", "63988dec52695cd5e9902d3cf041baadf5839498b8e007a49434bb9be7e2d883"},
+  "blue_heron_transport_uart": {:hex, :blue_heron_transport_uart, "0.1.2", "604e57e4bf9977c3d09b09630f6e968c312143bcfa41b74718386da00278b1a3", [:mix], [{:blue_heron, "~> 0.2.1", [hex: :blue_heron, repo: "hexpm", optional: false]}, {:circuits_uart, "~> 1.4", [hex: :circuits_uart, repo: "hexpm", optional: false]}], "hexpm", "99c83257cc1204653d5e7bd3319b1e200e6301f58c63715f15b6bae30c53e065"},
   "boundary": {:hex, :boundary, "0.8.0", "74fa1cc077e92e2e62c7ceb0116dcd6872cf0e6ab5094325a6460f60b3da2e6a", [:mix], [], "hexpm", "cafbd95ad4b4acdf9e5f42d9590cf49993062cfb5dd4bce4a28791974f362d16"},
   "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], [], "hexpm", "7af5c7e09fe1d40f76c8e4f9dd2be7cebd83909f31fee7cd0e9eadc567da8353"},
   "castore": {:hex, :castore, "0.1.11", "c0665858e0e1c3e8c27178e73dffea699a5b28eb72239a3b2642d208e8594914", [:mix], [], "hexpm", "91b009ba61973b532b84f7c09ce441cba7aa15cb8b006cf06c6f4bba18220081"},
