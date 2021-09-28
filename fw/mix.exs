@@ -54,9 +54,24 @@ defmodule Fw.MixProject do
       dep(:launcher, :github),
       dep(:piano_ctl, :github),
       dep(:piano_ui, :github),
-      # dep(:play, :github),
+      dep(:play, :github),
+      dep(:play_web, :github),
       dep(:pomodoro, :github),
-      {:livebook, "~> 0.1.0", only: [:dev, :prod]},
+
+      # Work around a probably hex bug
+      # jason@jdesktop ~/d/s/fw (master)> mix deps.get
+      # Resolving Hex dependencies...
+      #
+      # Failed to use "phoenix" (version 1.5.12) because
+      #   deps/govee_phx/mix.exs requires ~> 1.6.0
+      #   deps/livebook/mix.exs requires 1.5.12
+      # jason@jdesktop ~/d/s/fw (master)> cat deps/livebook/mix.exs|grep :phoenix,
+      #       {:phoenix, "~> 1.6"},
+      {:phoenix, "1.6.0", override: true},
+      {:phoenix_live_view, "0.16.4", override: true},
+
+      # {:livebook, "~> 0.2.0", only: [:dev, :prod]},
+      {:livebook, github: "axelson/livebook", branch: "phx-1.6", only: [:dev, :prod]},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
       # Supporting
@@ -69,7 +84,8 @@ defmodule Fw.MixProject do
       {:nerves_system_rpi3, "1.17.0", runtime: false, targets: :rpi3},
       # Needed for my RPI backlight patch
       # https://github.com/nerves-project/nerves_system_rpi3/pull/216
-      {:jax_rpi3, github: "axelson/nerves_system_rpi3", ref: "v1.17.1", runtime: false, targets: :jax_rpi3},
+      # {:jax_rpi3, github: "axelson/jax_rpi3", ref: "v1.17.1", runtime: false, targets: :jax_rpi3},
+      {:jax_rpi3, github: "axelson/jax_rpi3", ref: "v1.17.0", runtime: false, targets: :jax_rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
@@ -92,7 +108,12 @@ defmodule Fw.MixProject do
   defp dep(:play, :path), do: {:play, path: "../../play", override: true}
 
   defp dep(:play, :github),
-    do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
+    do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer2", override: true}
+
+  defp dep(:play_web, :path), do: {:play_web, path: "../../play_web", override: true}
+
+  defp dep(:play_web, :github),
+    do: {:play_web, github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro", sparse: "pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro/pomodoro", override: true}

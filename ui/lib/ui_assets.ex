@@ -4,6 +4,7 @@ defmodule Ui.Assets do
     sources: [
       "assets",
       {:piano_ui, PianoUi.Assets.asset_path()},
+      {:play, Play.Assets.asset_path()},
       {:scenic, "deps/scenic/assets"}
     ],
     alias: [

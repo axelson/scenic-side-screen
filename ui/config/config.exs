@@ -6,8 +6,7 @@ config :phoenix, :json_library, Jason
 
 config :logger, :console, format: "$time $metadata[$level] $levelpad$message\n"
 
-config :scenic, :assets,
-   module: Ui.Assets
+config :scenic, :assets, module: Ui.Assets
 
 config :ui, :viewport,
   name: :main_viewport,
@@ -22,7 +21,6 @@ config :ui, :viewport,
     ]
   ]
 
-
 config :govee_phx, GoveePhxWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
@@ -34,7 +32,7 @@ config :launcher, refresh_enabled: true
 
 config :launcher,
   scenes: [
-    # {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}}
   ]
@@ -46,12 +44,25 @@ ctl_node =
   end
 
 config :ui, ecto_repos: [PianoUi.Repo]
+
 config :piano_ui, PianoUi.Repo,
   database: "/Users/jason/dev/scenic-side-screen/ui/piano_ui_database.db",
   journal_mode: :wal,
   cache_size: -64000,
   temp_store: :memory,
   pool_size: 1
+
+config :play,
+  viewport_size: {800, 480},
+  phx_endpoint: PlayWeb.Endpoint
+
+config :play_web, PlayWeb.Endpoint,
+  url: [host: "localhost"],
+  reloadable_apps: [:play, :play_ui, :play_web],
+  server: true,
+  secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
+  render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
+  pubsub_server: PlayWeb.PubSub
 
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]

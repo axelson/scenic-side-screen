@@ -27,17 +27,18 @@ defmodule Ui.MixProject do
       dep(:launcher, :github),
       dep(:piano_ctl, :github),
       dep(:piano_ui, :github),
-      # dep(:play, :github),
+      dep(:play, :github),
+      dep(:play_web, :github),
       dep(:pomodoro, :github),
       {:exsync, path: "~/dev/forks/exsync", override: true},
       {:exqlite, "~> 0.6.1"},
-      # {:exqlite, github: "warmwaffles/exqlite", ref: "60d365e46", override: true},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       dep(:phoenix_live_reload, :hex),
       {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
+      # {:scenic, path: "~/dev/forks/scenic", override: true},
       {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local"},
       dep(:scenic_live_reload, :path),
       dep(:blue_heron, :github),
@@ -59,7 +60,12 @@ defmodule Ui.MixProject do
   defp dep(:play, :path), do: {:play, path: "../../scenic_asteroids/play", override: true}
 
   defp dep(:play, :github),
-    do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer"}
+    do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer2", override: true}
+
+  defp dep(:play_web, :path), do: {:play_web, path: "../../scenic_asteroids/play_web"}
+
+  defp dep(:play_web, :github),
+    do: {:play_web, github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro", sparse: "pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro/pomodoro", override: true}

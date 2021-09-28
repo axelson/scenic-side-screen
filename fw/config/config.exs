@@ -13,10 +13,9 @@ config :nerves, :firmware,
   fwup_conf: "config/fwup.conf"
 
 config :livebook,
-  default_runtime: Livebook.Runtime.Embedded,
+  default_runtime: {Livebook.Runtime.Embedded, []},
   authentication_mode: :password,
   token_authentication: false,
-  root_path: "/data/livebooks",
   cookie: :fw_cookie,
   node: {:longnames, :"fw@192.168.1.6"},
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
@@ -142,9 +141,9 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
 config :launcher,
   scenes: [
-    # {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"piano_ui", "Dashboard", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
-    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}}
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
   ]
 
 ctl_node =
@@ -153,12 +152,25 @@ ctl_node =
     node -> String.to_atom(node)
   end
 
-config :fw, nodes: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
+config :fw, nodes: [ctl_node]
 
 config :fw, ecto_repos: [PianoUi.Repo]
+
+config :play,
+  viewport_size: {800, 480},
+  phx_endpoint: PlayWeb.Endpoint
+
+config :play_web, PlayWeb.Endpoint,
+  http: [port: 8080],
+  url: [host: "192.168.1.6"],
+  reloadable_apps: [:play, :play_ui, :play_web],
+  server: true,
+  secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
+  render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
+  pubsub_server: PlayWeb.PubSub
+
 config :piano_ui, :ctl_node, ctl_node
-# config :piano_ui, libcluster_hosts: [ctl_node]
-config :piano_ui, libcluster_hosts: [:"ctl@192.168.1.4", :"ctl@192.168.1.6"]
+config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
 
 config :piano_ui, PianoUi.Repo,
