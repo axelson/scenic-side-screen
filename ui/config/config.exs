@@ -32,10 +32,11 @@ config :launcher, refresh_enabled: true
 
 config :launcher,
   scenes: [
-    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"piano_ui", "Dashboard", {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
-    {"piano_ui", "Piano UI", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}}
-  ]
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
+  ],
+  auto_refresh: true
 
 ctl_node =
   case System.get_env("CTL_NODE") do

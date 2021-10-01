@@ -1,7 +1,7 @@
 defmodule Fw.MixProject do
   use Mix.Project
 
-  @all_targets [:rpi3, :jax_rpi3]
+  @all_targets [:rpi3]
   @app :fw
 
   def project do
@@ -81,11 +81,7 @@ defmodule Fw.MixProject do
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
       {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
-      {:nerves_system_rpi3, "1.17.0", runtime: false, targets: :rpi3},
-      # Needed for my RPI backlight patch
-      # https://github.com/nerves-project/nerves_system_rpi3/pull/216
-      # {:jax_rpi3, github: "axelson/jax_rpi3", ref: "v1.17.1", runtime: false, targets: :jax_rpi3},
-      {:jax_rpi3, github: "axelson/jax_rpi3", ref: "v1.17.0", runtime: false, targets: :jax_rpi3},
+      {:nerves_system_rpi3, "~> 1.17", runtime: false, targets: :rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},

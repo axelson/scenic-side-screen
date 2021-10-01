@@ -141,7 +141,7 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
 config :launcher,
   scenes: [
-    {"piano_ui", "Dashboard", {PianoUi.Scene.Splash, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
+    {"piano_ui", "Dashboard", {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
   ]
@@ -172,6 +172,8 @@ config :play_web, PlayWeb.Endpoint,
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
+
+config :piano_ui, ecto_repos: [PianoUi.Repo]
 
 config :piano_ui, PianoUi.Repo,
   database: "/data/piano_ui_database.db",

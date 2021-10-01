@@ -5,6 +5,7 @@ defmodule Fw.Assets do
       "assets",
       {:piano_ui, PianoUi.Assets.asset_path()},
       {:play, Play.Assets.asset_path()},
+      {:pomodoro, PomodoroUi.Assets.asset_path()},
       {:scenic, "deps/scenic/assets"}
     ],
     alias: [

@@ -18,6 +18,13 @@ To run the Nerves app:
 
 You can use the Ramoops logger with `ssh nerves.local`, then run `Ramoops.dump()`, this will show you the logs from the previous run.
 
+# Running migration
+
+``` sh
+ssh nerves.local
+iex> PianoUi.Release.migrate()
+```
+
 # Troubleshooting
 
 If scenic doesn't launch then you may be affected by the bug https://github.com/boydm/scenic_new/issues/36 to fix it run the following:
