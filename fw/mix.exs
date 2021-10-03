@@ -72,6 +72,9 @@ defmodule Fw.MixProject do
 
       # {:livebook, "~> 0.2.0", only: [:dev, :prod]},
       {:livebook, github: "axelson/livebook", branch: "phx-1.6", only: [:dev, :prod]},
+      # For livebook
+      {:vega_lite, ">= 0.0.0"},
+      {:kino, ">= 0.0.0"},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
       # Supporting
