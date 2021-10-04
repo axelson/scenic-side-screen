@@ -25,6 +25,7 @@ ui-*.tar
 # Environment file
 .env
 
-/priv/database.*
+/priv/piano_ui_database.*
+/priv/pomodoro_database.*
 /priv/__scenic
 .nerves-live-reload

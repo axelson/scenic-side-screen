@@ -142,7 +142,8 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 config :launcher,
   scenes: [
     {"piano_ui", "Dashboard", {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
-    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
+    # {"pomodoro", "Pomodoro", {PomodoroUi.Scene.MiniComponent, t: {595, 69}, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
+    {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, []}},
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
   ]
 
@@ -154,7 +155,7 @@ ctl_node =
 
 config :fw, nodes: [ctl_node]
 
-config :fw, ecto_repos: [PianoUi.Repo]
+config :fw, ecto_repos: [PianoUi.Repo, Pomodoro.Repo]
 
 config :play,
   viewport_size: {800, 480},
@@ -178,7 +179,17 @@ config :piano_ui, ecto_repos: [PianoUi.Repo]
 config :piano_ui, PianoUi.Repo,
   database: "/data/piano_ui_database.db",
   journal_mode: :wal,
-  cache_size: -64000,
+  cache_size: -64_000,
+  temp_store: :memory,
+  pool_size: 1
+
+config :pomodoro, ecto_repos: [Pomodoro.Repo]
+
+config :pomodoro, Pomodoro.Repo,
+  database: "/data/pomodoro_database.db",
+  migration_primary_key: [type: :binary_id],
+  journal_mode: :wal,
+  cache_size: -64_000,
   temp_store: :memory,
   pool_size: 1
 

@@ -44,10 +44,18 @@ ctl_node =
     node -> String.to_atom(node)
   end
 
-config :ui, ecto_repos: [PianoUi.Repo]
+config :ui, ecto_repos: [PianoUi.Repo, Pomodoro.Repo]
 
 config :piano_ui, PianoUi.Repo,
-  database: "/Users/jason/dev/scenic-side-screen/ui/piano_ui_database.db",
+  database: "priv/piano_ui_database.db",
+  journal_mode: :wal,
+  cache_size: -64000,
+  temp_store: :memory,
+  pool_size: 1
+
+config :pomodoro, Pomodoro.Repo,
+  database: "priv/pomodoro_database.db",
+  migration_primary_key: [type: :binary_id],
   journal_mode: :wal,
   cache_size: -64000,
   temp_store: :memory,

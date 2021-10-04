@@ -23,6 +23,7 @@ You can use the Ramoops logger with `ssh nerves.local`, then run `Ramoops.dump()
 ``` sh
 ssh nerves.local
 iex> PianoUi.Release.migrate()
+iex> Pomodoro.Release.migrate()
 ```
 
 # Troubleshooting

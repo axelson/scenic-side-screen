@@ -7,15 +7,6 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :ui, ecto_repos: [PianoUi.Repo]
-
-config :piano_ui, PianoUi.Repo,
-  database: "priv/database.db",
-  journal_mode: :wal,
-  cache_size: -64_000,
-  temp_store: :memory,
-  pool_size: 1
-
 config :govee_phx, GoveePhxWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
