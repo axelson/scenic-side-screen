@@ -22,11 +22,15 @@ config :ui, :viewport,
   ]
 
 config :govee_phx, GoveePhxWeb.Endpoint,
+  http: [
+    port: 4000,
+  ],
   url: [host: "localhost"],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
   render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: GoveePhx.PubSub,
-  live_view: [signing_salt: "3J2S31Z1"]
+  live_view: [signing_salt: "3J2S31Z1"],
+  server: true
 
 config :launcher, refresh_enabled: true
 
@@ -61,17 +65,22 @@ config :pomodoro, Pomodoro.Repo,
   temp_store: :memory,
   pool_size: 1
 
+config :pomodoro, sound_directory: "priv/sounds"
+
 config :play,
   viewport_size: {800, 480},
   phx_endpoint: PlayWeb.Endpoint
 
 config :play_web, PlayWeb.Endpoint,
+  http: [
+    port: 4001,
+  ],
   url: [host: "localhost"],
   reloadable_apps: [:play, :play_ui, :play_web],
-  server: true,
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
-  pubsub_server: PlayWeb.PubSub
+  pubsub_server: PlayWeb.PubSub,
+  server: true
 
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]

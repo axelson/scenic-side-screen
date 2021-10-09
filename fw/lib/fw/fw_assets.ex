@@ -7,8 +7,5 @@ defmodule Fw.Assets do
       {:play, Play.Assets.asset_path()},
       {:pomodoro, PomodoroUi.Assets.asset_path()},
       {:scenic, "deps/scenic/assets"}
-    ],
-    alias: [
-      # roboto: {:scenic, "fonts/roboto.ttf"}
     ]
 end

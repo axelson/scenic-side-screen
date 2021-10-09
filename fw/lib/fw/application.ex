@@ -32,7 +32,8 @@ defmodule Fw.Application do
       # {Fw.Worker, arg},
       Fw.Backlight,
       Fw.StartClustering,
-      {Pomodoro.PomodoroTimer, []}
+      {Pomodoro.PomodoroTimer, []},
+      Fw.MyProxy,
     ]
   end
 end

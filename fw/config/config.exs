@@ -22,13 +22,13 @@ config :livebook,
 
 config :livebook, LivebookWeb.Endpoint,
   http: [
-    port: 4000,
+    port: 4040,
     transport_options: [socket_opts: [:inet6], num_acceptors: 2]
   ],
   secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
-  check_origin: false,
+  check_origin: ["http://livebook.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
   code_reloader: false,
   server: true
 
@@ -141,7 +141,8 @@ config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
 config :launcher,
   scenes: [
-    {"piano_ui", "Dashboard", {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
+    {"piano_ui", "Dashboard",
+     {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     # {"pomodoro", "Pomodoro", {PomodoroUi.Scene.MiniComponent, t: {595, 69}, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, []}},
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
@@ -153,7 +154,14 @@ ctl_node =
     node -> String.to_atom(node)
   end
 
-config :fw, nodes: [ctl_node]
+config :master_proxy,
+  http: [:inet6, port: 80]
+
+config :fw,
+  nodes: [ctl_node],
+  govee_phx_domain: "govee.nerves.jaxlsn.com",
+  asteroids_domain: "asteroids.nerves.jaxlsn.com",
+  livebook_domain: "livebook.nerves.jaxlsn.com"
 
 config :fw, ecto_repos: [PianoUi.Repo, Pomodoro.Repo]
 
@@ -163,12 +171,13 @@ config :play,
 
 config :play_web, PlayWeb.Endpoint,
   http: [port: 8080],
-  url: [host: "192.168.1.6"],
+  url: [host: "asteroids.nerves.jaxlsn.com", port: 80],
   reloadable_apps: [:play, :play_ui, :play_web],
-  server: true,
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
-  pubsub_server: PlayWeb.PubSub
+  pubsub_server: PlayWeb.PubSub,
+  check_origin: ["http://asteroids.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
+  server: true
 
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
@@ -193,6 +202,8 @@ config :pomodoro, Pomodoro.Repo,
   temp_store: :memory,
   pool_size: 1
 
+config :pomodoro, sound_directory: "/data/pomodoro_sounds"
+
 config :fw, :viewport,
   name: :main_viewport,
   size: {800, 480},
@@ -206,18 +217,15 @@ config :fw, :viewport,
 config :phoenix, :json_library, Jason
 
 config :govee_phx, GoveePhxWeb.Endpoint,
-  url: [host: "localhost"],
+  http: [port: 4004, transport_options: [num_acceptors: 2]],
+  url: [host: "govee.nerves.jaxlsn.com", port: 80],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
   render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: GoveePhx.PubSub,
   live_view: [signing_salt: "3J2S31Z1"],
-  check_origin: false,
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["http://govee.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
   server: true
-
-config :govee_phx, GoveePhxWeb.Endpoint,
-  http: [port: 80, transport_options: [num_acceptors: 2]],
-  url: [host: System.get_env("NODE_HOST"), port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
 
 config :govee_phx,
   govee_ble_devices: [

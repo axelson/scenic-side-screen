@@ -77,6 +77,8 @@ defmodule Fw.MixProject do
       {:kino, ">= 0.0.0"},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
+      {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
+
       # Supporting
       {:boundary, "~> 0.8.0"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
