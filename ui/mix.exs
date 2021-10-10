@@ -32,6 +32,7 @@ defmodule Ui.MixProject do
       dep(:pomodoro, :github),
       {:exsync, path: "~/dev/forks/exsync", override: true},
       {:exqlite, "~> 0.6.1"},
+      {:scenic_driver_remote, git: "git@github.com:ScenicFramework/scenic_driver_remote.git"},
 
       # Supporting
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
