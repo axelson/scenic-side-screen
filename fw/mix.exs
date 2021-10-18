@@ -75,6 +75,7 @@ defmodule Fw.MixProject do
       # For livebook
       {:vega_lite, ">= 0.0.0"},
       {:kino, ">= 0.0.0"},
+      {:power_control, "~> 0.2.0"},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
       # {:scenic_driver_remote, git: "ScenicFramework/scenic_driver_remote", branch: "main"},
@@ -121,8 +122,8 @@ defmodule Fw.MixProject do
   defp dep(:play_web, :github),
     do: {:play_web, github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
 
-  defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro", sparse: "pomodoro"}
-  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro/pomodoro", override: true}
+  defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
+  defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
 
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}
