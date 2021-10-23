@@ -4,7 +4,7 @@ Main Dashboard:
 
 ![Screenshot of dashboard application](dashboard_screenshot.png)
 
-![Screenshot of running application](launcher_screenshot.png)
+![Screenshot of running application](launcher_screenshot.png | width=150)
 
 Check the following directories for detailed instructions on running the projects:
 * `ui/` - Run via scenic on the desktop
