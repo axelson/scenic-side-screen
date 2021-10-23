@@ -1,14 +1,24 @@
-Top-level apps that runs multiple scenic apps underneath them using a launcher application written in Scenic.
+Top-level app that runs multiple scenic apps underneath. Uses a launcher application written in Scenic.
 
-![Screenshot of running application](launcher.png)
+Main Dashboard:
+
+![Screenshot of dashboard application](dashboard_screenshot.png)
+
+![Screenshot of running application](launcher_screenshot.png)
 
 Check the following directories for detailed instructions on running the projects:
 * `ui/` - Run via scenic on the desktop
 * `fw/` - Run on a Nerves device with a touchscreen
   * Official Raspberry PI touch screen is supported
 
-TODO:
-- [x] Integrate https://github.com/smartrent/ramoops_logger
-- [ ] Create a "ScreenSaver". Can use this as a pattern
-  - https://github.com/jjcarstens/hub/blob/master/atm/lib/atm/session.ex#L74
-- [ ] Create a scenic log viewer app to view RingLogger logs or similar
+I spoke about this project a ElixirConf 2021, watch the video on YouTube:
+[![ElixirConf 2021 Talk Link](ElixirConf2021_MyScenicCompanion.png)](https://www.youtube.com/watch?v=wCxMSo3TZjw)
+
+Sub-application Repos:
+- https://github.com/axelson/piano_ex
+- https://github.com/axelson/pomodoro
+- https://github.com/axelson/govee
+- https://github.com/axelson/govee_phx
+- https://github.com/axelson/govee_semaphore
+- https://github.com/axelson/scenic_launcher
+- https://github.com/axelson/scenic_asteroids
