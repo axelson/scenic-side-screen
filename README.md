@@ -6,7 +6,7 @@ Main Dashboard:
 
 Launcher:
 
-![Screenshot of launcher](launcher_screenshot.png)
+![Screenshot of launcher](launcher_screenshot_small.png)
 
 Check the following directories for detailed instructions on running the projects:
 * `ui/` - Run via scenic on the desktop
@@ -14,7 +14,7 @@ Check the following directories for detailed instructions on running the project
   * Official Raspberry PI touch screen is supported
 
 I spoke about this project a ElixirConf 2021, watch the video on YouTube:
-[![ElixirConf 2021 Talk Link](ElixirConf2021_MyScenicCompanion.png)](https://www.youtube.com/watch?v=wCxMSo3TZjw)
+[![ElixirConf 2021 Talk Link](ElixirConf_2021_MyScenicCompanion.png)](https://www.youtube.com/watch?v=wCxMSo3TZjw)
 
 Sub-application Repos:
 - https://github.com/axelson/piano_ex
