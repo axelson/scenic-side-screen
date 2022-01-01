@@ -23,7 +23,7 @@ config :ui, :viewport,
 
 config :govee_phx, GoveePhxWeb.Endpoint,
   http: [
-    port: 4000,
+    port: 4003,
   ],
   url: [host: "localhost"],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
@@ -90,18 +90,18 @@ config :piano_ctl, libcluster_hosts: []
 
 config :govee_phx,
   govee_ble_devices: [
-    #[
+    # [
     #  type: :h6001,
     #  addr: 0xA4C138EC49BD
-    #],
-    #[
+    # ],
+    # [
     #  type: :h6001,
     #  addr: 0xA4C1385184DA
-    #],
-    #[
+    # ],
+    # [
     #  type: :h6159,
     #  addr: 0xA4C138668E6F
-    #]
+    # ]
   ]
 
 config :govee_phx,
