@@ -76,11 +76,9 @@ defmodule Fw.MixProject do
       {:vega_lite, ">= 0.0.0"},
       {:kino, ">= 0.0.0"},
       {:power_control, "~> 0.2.0"},
+      {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
-      # {:scenic_driver_remote, git: "ScenicFramework/scenic_driver_remote", branch: "main"},
-      {:scenic_driver_remote, git: "https://github.com/ScenicFramework/scenic_driver_remote.git"},
-      # {:scenic_driver_remote, path: "deps/scenic_driver_remote"},
       {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
 
       # Supporting
@@ -90,6 +88,7 @@ defmodule Fw.MixProject do
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
       {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
+      {:circuits_gpio, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:nerves_system_rpi3, "~> 1.17", runtime: false, targets: :rpi3},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
@@ -98,8 +97,14 @@ defmodule Fw.MixProject do
       {:ring_logger, github: "axelson/ring_logger", branch: "blame-exceptions", override: true},
       # {:ring_logger, path: "deps/ring_logger", override: true},
       # {:scenic, github: "boydm/scenic", branch: "input_and_drivers", override: true},
-      {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
-      {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", branch: "debug_asset_mgmt", targets: @all_targets},
+      # {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
+
+      {:scenic, "~> 0.11.0-beta.0", override: true},
+      {:scenic_driver_local, "~> 0.11.0-beta.0"},
+
+      # {:scenic, path: "~/dev/forks/scenic", override: true},
+      # {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", targets: @all_targets},
+
       # {:scenic_driver_local, path: "deps/scenic_driver_local", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
