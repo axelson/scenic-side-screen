@@ -9,8 +9,7 @@ import Config
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
 config :nerves, :firmware,
-  rootfs_overlay: "rootfs_overlay",
-  fwup_conf: "config/fwup.conf"
+  rootfs_overlay: "rootfs_overlay"
 
 config :livebook,
   default_runtime: {Livebook.Runtime.Embedded, []},
