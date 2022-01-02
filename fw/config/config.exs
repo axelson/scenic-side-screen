@@ -232,11 +232,11 @@ config :govee_phx,
     [
       type: :h6001,
       addr: 0xA4C138EC49BD
-    ]
-    # [
-    #   type: :h6001,
-    #   addr: 0xA4C1385184DA
-    # ],
+    ],
+    [
+      type: :h6001,
+      addr: 0xA4C1385184DA
+    ],
     # [
     #   type: :h6159,
     #   addr: 0xA4C138668E6F
