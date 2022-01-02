@@ -25,7 +25,8 @@ defmodule Fw.MixProject do
       cookie: "#{@app}_cookie",
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble],
-      strip_beams: Mix.env() == :prod or [keep: ["Docs", "Dbgi"]]
+      strip_beams: Mix.env() == :prod or [keep: ["Docs", "Dbgi"]],
+      config_providers: [{Fw.RuntimeConfigProvider, "/data/.target.secret.exs"}]
     ]
   end
 
