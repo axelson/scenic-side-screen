@@ -8,15 +8,14 @@ import Config
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
-config :nerves, :firmware,
-  rootfs_overlay: "rootfs_overlay"
+config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 
 config :livebook,
   default_runtime: {Livebook.Runtime.Embedded, []},
   authentication_mode: :password,
   token_authentication: false,
   cookie: :fw_cookie,
-  node: {:longnames, :"fw@192.168.1.6"},
+  node: {:longnames, :"fw@192.168.8.6"},
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
 
 config :livebook, LivebookWeb.Endpoint,
@@ -236,7 +235,7 @@ config :govee_phx,
     [
       type: :h6001,
       addr: 0xA4C1385184DA
-    ],
+    ]
     # [
     #   type: :h6159,
     #   addr: 0xA4C138668E6F

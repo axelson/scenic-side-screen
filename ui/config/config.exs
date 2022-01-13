@@ -16,8 +16,10 @@ config :ui, :viewport,
     [
       module: Scenic.Driver.Local,
       window: [
-        title: "My Scenic Companion"
-      ]
+        title: "My Scenic Companion",
+        resizeable: true
+      ],
+      on_close: :stop_system
     ]
   ]
 
