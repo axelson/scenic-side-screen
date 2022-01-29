@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Disable tzdata automatic updates
 config :tzdata, :autoupdate, :disabled

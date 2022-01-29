@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
