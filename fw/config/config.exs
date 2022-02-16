@@ -109,7 +109,7 @@ config :mdns_lite,
   # "nerves.local" for convenience. If more than one Nerves device is on the
   # network, delete "nerves" from the list.
 
-  host: [:hostname, "nerves"],
+  host: [:hostname, "nerves-side-screen"],
   ttl: 120,
 
   # Advertise the following services over mDNS.
