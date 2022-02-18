@@ -83,7 +83,7 @@ defmodule Fw.MixProject do
       {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
 
       # Supporting
-      {:boundary, "~> 0.8.0"},
+      {:boundary, "~> 0.9"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
@@ -100,7 +100,9 @@ defmodule Fw.MixProject do
       # {:scenic, github: "boydm/scenic", branch: "input_and_drivers", override: true},
       # {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
 
-      {:scenic, "~> 0.11.0-beta.0", override: true},
+      # Wait for https://github.com/boydm/scenic/pull/259 to be merged
+      {:scenic, github: "axelson/scenic", branch: "update-nimble-options-0.4", override: true},
+      # {:scenic, "~> 0.11.0-beta.0", override: true},
       {:scenic_driver_local, "~> 0.11.0-beta.0"},
 
       # {:scenic, path: "~/dev/forks/scenic", override: true},

@@ -179,6 +179,7 @@ config :play_web, PlayWeb.Endpoint,
 
 config :piano_ui, :ctl_node, ctl_node
 config :piano_ui, libcluster_hosts: [ctl_node]
+config :piano_ui, :libcluster_strategy, Cluster.Strategy.Epmd
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
 
 config :piano_ui, ecto_repos: [PianoUi.Repo]
