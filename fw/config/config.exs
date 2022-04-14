@@ -15,7 +15,7 @@ config :livebook,
   authentication_mode: :password,
   token_authentication: false,
   cookie: :fw_cookie,
-  node: {:longnames, :"fw@192.168.8.6"},
+  node: {:longnames, :"fw@192.168.1.6"},
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
 
 config :livebook, LivebookWeb.Endpoint,
