@@ -100,8 +100,7 @@ defmodule Fw.MixProject do
       # {:scenic, github: "boydm/scenic", branch: "input_and_drivers", override: true},
       # {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
 
-      # Wait for https://github.com/boydm/scenic/pull/259 to be merged
-      {:scenic, github: "axelson/scenic", branch: "update-nimble-options-0.4", override: true},
+      {:scenic, github: "boydm/scenic", override: true},
       # {:scenic, "~> 0.11.0-beta.0", override: true},
       {:scenic_driver_local, "~> 0.11.0-beta.0"},
 
