@@ -26,6 +26,12 @@ iex> PianoUi.Release.migrate()
 iex> Pomodoro.Release.migrate()
 ```
 
+# Accessing the web applications
+
+- http://livebook.nerves-side-screen.local
+- http://govee.nerves-side-screen.local
+- http://asteroids.nerves-side-screen.local
+
 # Troubleshooting
 
 If scenic doesn't launch then you may be affected by the bug https://github.com/boydm/scenic_new/issues/36 to fix it run the following:
