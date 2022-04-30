@@ -18,3 +18,5 @@ erl_crash.dump
 
 .env
 .nerves-live-reload
+.target.secret.exs
+.target.secret2.exs

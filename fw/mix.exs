@@ -59,20 +59,14 @@ defmodule Fw.MixProject do
       dep(:play_web, :github),
       dep(:pomodoro, :github),
 
-      # Work around a probably hex bug
-      # jason@jdesktop ~/d/s/fw (master)> mix deps.get
-      # Resolving Hex dependencies...
-      #
-      # Failed to use "phoenix" (version 1.5.12) because
-      #   deps/govee_phx/mix.exs requires ~> 1.6.0
-      #   deps/livebook/mix.exs requires 1.5.12
-      # jason@jdesktop ~/d/s/fw (master)> cat deps/livebook/mix.exs|grep :phoenix,
-      #       {:phoenix, "~> 1.6"},
-      {:phoenix, "1.6.0", override: true},
-      {:phoenix_live_view, "0.16.4", override: true},
+      {:phoenix, "~> 1.6.7"},
+      {:phoenix_live_view, "~> 0.17.0"},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
 
-      # {:livebook, "~> 0.2.0", only: [:dev, :prod]},
-      {:livebook, github: "axelson/livebook", branch: "phx-1.6", only: [:dev, :prod]},
+      # {:livebook, "~> 0.5.2", only: [:dev, :prod]},
+      {:livebook, github: "axelson/livebook", branch: "jax", only: [:dev, :prod]},
+      # {:livebook, path: "~/dev/forks/livebook", only: [:dev, :prod]},
       # For livebook
       {:vega_lite, ">= 0.0.0"},
       {:kino, ">= 0.0.0"},

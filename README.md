@@ -9,8 +9,8 @@ Launcher:
 ![Screenshot of launcher](launcher_screenshot_small.png)
 
 Check the following directories for detailed instructions on running the projects:
-* `ui/` - Run via scenic on the desktop
-* `fw/` - Run on a Nerves device with a touchscreen
+* [`ui/`](./ui) - Run via scenic on the desktop
+* [`fw/`](./fw) - Run on a Nerves device with a touchscreen
   * Official Raspberry PI touch screen is supported
 
 I spoke about this project a ElixirConf 2021, watch the video on YouTube:

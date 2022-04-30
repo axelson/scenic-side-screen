@@ -8,27 +8,10 @@ import Config
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
+mdns_hostname = "nerves-side-screen"
+config :fw, mdns_hostname: mdns_hostname
+
 config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
-
-config :livebook,
-  default_runtime: {Livebook.Runtime.Embedded, []},
-  authentication_mode: :password,
-  token_authentication: false,
-  cookie: :fw_cookie,
-  node: {:longnames, :"fw@192.168.1.6"},
-  password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
-
-config :livebook, LivebookWeb.Endpoint,
-  http: [
-    port: 4040,
-    transport_options: [socket_opts: [:inet6], num_acceptors: 2]
-  ],
-  secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
-  pubsub_server: Livebook.PubSub,
-  live_view: [signing_salt: "livebook"],
-  check_origin: ["http://livebook.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
-  code_reloader: false,
-  server: true
 
 # Cannot write update files to a read-only file system. Plus we don't need
 # accurate timezones
@@ -53,6 +36,9 @@ config :nerves_runtime, :kernel, use_system_registry: false
 # configuring erlinit.
 
 config :nerves, :erlinit,
+  hang_on_exit: true,
+  run_on_exit: "/bin/sh",
+  print_timing: true,
   hostname_pattern: "nerves-%s",
   shutdown_report: "/data/last_shutdown.txt"
 
@@ -109,7 +95,13 @@ config :mdns_lite,
   # "nerves.local" for convenience. If more than one Nerves device is on the
   # network, delete "nerves" from the list.
 
-  host: [:hostname, "nerves-side-screen"],
+  hosts: [
+    :hostname,
+    mdns_hostname,
+    "govee.#{mdns_hostname}",
+    "asteroids.#{mdns_hostname}",
+    "livebook.#{mdns_hostname}"
+  ],
   ttl: 120,
 
   # Advertise the following services over mDNS.
@@ -157,9 +149,9 @@ config :master_proxy,
 
 config :fw,
   nodes: [ctl_node],
-  govee_phx_domain: "govee.nerves.jaxlsn.com",
-  asteroids_domain: "asteroids.nerves.jaxlsn.com",
-  livebook_domain: "livebook.nerves.jaxlsn.com"
+  govee_phx_domain: "govee.#{mdns_hostname}.local",
+  asteroids_domain: "asteroids.#{mdns_hostname}.local",
+  livebook_domain: "livebook.#{mdns_hostname}.local"
 
 config :fw, ecto_repos: [PianoUi.Repo, Pomodoro.Repo]
 
@@ -169,12 +161,12 @@ config :play,
 
 config :play_web, PlayWeb.Endpoint,
   http: [port: 8080],
-  url: [host: "asteroids.nerves.jaxlsn.com", port: 80],
+  url: [host: "asteroids.#{mdns_hostname}.local", port: 80],
   reloadable_apps: [:play, :play_ui, :play_web],
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: PlayWeb.PubSub,
-  check_origin: ["http://asteroids.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
+  check_origin: ["http://asteroids.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
   server: true
 
 config :piano_ui, :ctl_node, ctl_node
@@ -217,38 +209,26 @@ config :phoenix, :json_library, Jason
 
 config :govee_phx, GoveePhxWeb.Endpoint,
   http: [port: 4004, transport_options: [num_acceptors: 2]],
-  url: [host: "govee.nerves.jaxlsn.com", port: 80],
+  url: [host: "govee.#{mdns_hostname}.local", port: 80],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
   render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: GoveePhx.PubSub,
   live_view: [signing_salt: "3J2S31Z1"],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["http://govee.nerves.jaxlsn.com", "http://#{System.get_env("NODE_HOST")}"],
+  check_origin: ["http://govee.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
   server: true
 
 config :govee_phx,
-  govee_ble_devices: [
-    # Main govee light
-    [
-      type: :h6001,
-      addr: 0xA4C138EC49BD
-    ],
-    [
-      type: :h6001,
-      addr: 0xA4C1385184DA
-    ]
-    # [
-    #   type: :h6159,
-    #   addr: 0xA4C138668E6F
-    # ]
-  ]
-
-config :govee_phx,
+  # The devices are set in `.target.secret.exs` so that they're not defined in the repository
+  govee_ble_devices: [],
   transport_config: %{
     device: "ttyS0",
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
+
+# Livebook's explore section is built at compile-time
+config :livebook, :explore_notebooks, []
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

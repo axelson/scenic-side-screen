@@ -21,10 +21,16 @@ You can use the Ramoops logger with `ssh nerves.local`, then run `Ramoops.dump()
 # Running migration
 
 ``` sh
-ssh nerves.local
+ssh nerves-side-screen.local
 iex> PianoUi.Release.migrate()
 iex> Pomodoro.Release.migrate()
 ```
+
+# Accessing the web applications
+
+- http://livebook.nerves-side-screen.local
+- http://govee.nerves-side-screen.local
+- http://asteroids.nerves-side-screen.local
 
 # Troubleshooting
 
