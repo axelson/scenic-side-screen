@@ -9,34 +9,9 @@ import Config
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
 mdns_hostname = "nerves-side-screen"
+config :fw, mdns_hostname: mdns_hostname
 
 config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
-
-config :livebook,
-  default_runtime: {Livebook.Runtime.Embedded, []},
-  iframe_port: 8081,
-  app_service_name: nil,
-  app_service_url: nil,
-  authentication_mode: :password,
-  token_authentication: false,
-  cookie: :fw_cookie,
-  explore_notebooks: [],
-  storage: Livebook.Storage.Ets,
-  shutdown_enabled: false,
-  plugs: [],
-  password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
-
-config :livebook, LivebookWeb.Endpoint,
-  http: [
-    port: 4040,
-    transport_options: [socket_opts: [:inet6], num_acceptors: 2]
-  ],
-  secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
-  pubsub_server: Livebook.PubSub,
-  live_view: [signing_salt: "livebook"],
-  check_origin: ["http://livebook.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
-  code_reloader: false,
-  server: true
 
 # Cannot write update files to a read-only file system. Plus we don't need
 # accurate timezones
@@ -61,6 +36,9 @@ config :nerves_runtime, :kernel, use_system_registry: false
 # configuring erlinit.
 
 config :nerves, :erlinit,
+  hang_on_exit: true,
+  run_on_exit: "/bin/sh",
+  print_timing: true,
   hostname_pattern: "nerves-%s",
   shutdown_report: "/data/last_shutdown.txt"
 
@@ -117,7 +95,7 @@ config :mdns_lite,
   # "nerves.local" for convenience. If more than one Nerves device is on the
   # network, delete "nerves" from the list.
 
-  host: [
+  hosts: [
     :hostname,
     mdns_hostname,
     "govee.#{mdns_hostname}",
@@ -183,7 +161,7 @@ config :play,
 
 config :play_web, PlayWeb.Endpoint,
   http: [port: 8080],
-  url: [host: "asteroids.nerves.jaxlsn.com", port: 80],
+  url: [host: "asteroids.#{mdns_hostname}.local", port: 80],
   reloadable_apps: [:play, :play_ui, :play_web],
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
@@ -241,28 +219,16 @@ config :govee_phx, GoveePhxWeb.Endpoint,
   server: true
 
 config :govee_phx,
-  govee_ble_devices: [
-    # Main govee light
-    [
-      type: :h6001,
-      addr: 0xA4C138EC49BD
-    ],
-    [
-      type: :h6001,
-      addr: 0xA4C1385184DA
-    ]
-    # [
-    #   type: :h6159,
-    #   addr: 0xA4C138668E6F
-    # ]
-  ]
-
-config :govee_phx,
+  # The devices are set in `.target.secret.exs` so that they're not defined in the repository
+  govee_ble_devices: [],
   transport_config: %{
     device: "ttyS0",
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
+
+# Livebook's explore section is built at compile-time
+config :livebook, :explore_notebooks, []
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

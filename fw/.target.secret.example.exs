@@ -16,3 +16,6 @@ config :piano_ui,
 config :livebook,
   password: "<SNIP>",
   node: {:longnames, :"<NAME>@<IP>"}
+
+config :govee_phx,
+  govee_ble_devices: []
