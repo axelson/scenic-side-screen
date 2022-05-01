@@ -12,7 +12,10 @@ defmodule Fw.MyProxy do
       %{
         domain: Application.fetch_env!(:fw, :livebook_domain),
         phoenix_endpoint: LivebookWeb.Endpoint
-      }
+      },
+      %{
+        plug: Fw.DefaultPlug
+      },
     ]
 
   # # Optional callback
