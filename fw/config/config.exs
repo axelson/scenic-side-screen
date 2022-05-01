@@ -132,17 +132,10 @@ config :launcher,
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
   ]
 
-ctl_node =
-  case System.get_env("CTL_NODE") do
-    nil -> nil
-    node -> String.to_atom(node)
-  end
-
 config :master_proxy,
   http: [:inet6, port: 80]
 
 config :fw,
-  nodes: [ctl_node],
   govee_phx_domain: "govee.#{mdns_hostname}.local",
   asteroids_domain: "asteroids.#{mdns_hostname}.local",
   livebook_domain: "livebook.#{mdns_hostname}.local"
