@@ -27,7 +27,7 @@ config :livebook, LivebookWeb.Endpoint,
   secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
-  check_origin: ["http://livebook.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
+  check_origin: ["http://livebook.#{mdns_hostname}.local"],
   code_reloader: false,
   server: true
 

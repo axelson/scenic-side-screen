@@ -4,6 +4,6 @@ import Config
 config :logger, level: :info
 
 config :govee_phx, GoveePhxWeb.Endpoint,
-  url: [host: System.fetch_env!("NODE_HOST"), port: 80],
+  url: [port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 

@@ -91,10 +91,7 @@ config :vintage_net,
 config :mdns_lite,
   # The `host` key specifies what hostnames mdns_lite advertises.  `:hostname`
   # advertises the device's hostname.local. For the official Nerves systems, this
-  # is "nerves-<4 digit serial#>.local".  mdns_lite also advertises
-  # "nerves.local" for convenience. If more than one Nerves device is on the
-  # network, delete "nerves" from the list.
-
+  # is "nerves-<4 digit serial#>.local".
   hosts: [
     :hostname,
     mdns_hostname,
@@ -166,14 +163,11 @@ config :play_web, PlayWeb.Endpoint,
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: PlayWeb.PubSub,
-  check_origin: ["http://asteroids.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
+  check_origin: ["http://asteroids.#{mdns_hostname}.local"],
   server: true
 
-config :piano_ui, :ctl_node, ctl_node
-config :piano_ui, libcluster_hosts: [ctl_node]
 config :piano_ui, :libcluster_strategy, Cluster.Strategy.Epmd
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
-
 config :piano_ui, ecto_repos: [PianoUi.Repo]
 
 config :piano_ui, PianoUi.Repo,
@@ -215,7 +209,7 @@ config :govee_phx, GoveePhxWeb.Endpoint,
   pubsub_server: GoveePhx.PubSub,
   live_view: [signing_salt: "3J2S31Z1"],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["http://govee.#{mdns_hostname}.local", "http://#{System.get_env("NODE_HOST")}"],
+  check_origin: ["http://govee.#{mdns_hostname}.local"],
   server: true
 
 config :govee_phx,

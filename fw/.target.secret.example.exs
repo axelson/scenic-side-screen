@@ -1,5 +1,10 @@
 import Config
 
+ctl_node = :"ctl@<SNIP>"
+
+config :piano_ui, :ctl_node, ctl_node
+config :piano_ui, libcluster_hosts: [ctl_node]
+
 # Generate these keys with `mix phx.gen.secret`
 config :livebook, LivebookWeb.Endpoint,
   secret_key_base: "<SNIP>"

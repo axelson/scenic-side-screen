@@ -1,22 +1,23 @@
-`dotenv mix compile --warnings-as-errors && dotenv mix firmware && mix upload 192.168.1.6`
-
 # Default instructions
 
 To run the Nerves app:
   * `export MIX_TARGET=my_target` or prefix every command with
     `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
   * Install dependencies with `mix deps.get`
-  * Create firmware with `dotenv mix firmware`
+  * Create firmware with `mix firmware`
+  * Update secret configuration (on a subsequent deploy)
+    * Run `cp .target.secret.example.exs .target.secret.exs`
+    * Set all "<SNIP>" values in `.target.secret.exs`
+    * Copy the secret configuration to the device with
+      `scp .target.secret.exs nerves-side-screen.local:/data/.target.secret.exs`
   * Deploy/install
     * If it's the first time then run `mix firmware.burn`
-    * If you are already running the code then `./upload.sh nerves.local`
+    * If you are already running the code then `mix upload nerves-side-screen.local`
       Note: This requires an ssh key (see
       [nerves_ssh](https://github.com/nerves-project/nerves_ssh)
       for details)
 
-`dotenv` (from node or RubyGems) is required to set a value for `SLACK_TOKEN` which is used to connect to Slack
-
-You can use the Ramoops logger with `ssh nerves.local`, then run `Ramoops.dump()`, this will show you the logs from the previous run.
+You can use the Ramoops logger with `ssh nerves-side-screen.local`, then run `Ramoops.dump()`, this will show you the logs from the previous run.
 
 # Running migration
 
