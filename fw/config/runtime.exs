@@ -20,14 +20,9 @@ config :livebook,
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
 
 config :livebook, LivebookWeb.Endpoint,
-  http: [
-    port: 4040,
-    transport_options: [socket_opts: [:inet6], num_acceptors: 2]
-  ],
   secret_key_base: "CinsHrNmCwlrZlxMTWLOpgh6FQv8e61XeL/xkBRAYqhh8VEOvCAPZqap2KoKolKB",
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
   check_origin: ["http://livebook.#{mdns_hostname}.local"],
   code_reloader: false,
-  server: true
-
+  server: false

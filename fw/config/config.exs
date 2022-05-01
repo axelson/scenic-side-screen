@@ -154,14 +154,13 @@ config :play,
   phx_endpoint: PlayWeb.Endpoint
 
 config :play_web, PlayWeb.Endpoint,
-  http: [port: 8080],
   url: [host: "asteroids.#{mdns_hostname}.local", port: 80],
   reloadable_apps: [:play, :play_ui, :play_web],
   secret_key_base: "4m4EdLqbm138oXxQyvWMUy8CEiksqoNBPjoHZEwvhnGVML9SrFNCXtE57z6x8EV1",
   render_errors: [view: PlayWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: PlayWeb.PubSub,
   check_origin: ["http://asteroids.#{mdns_hostname}.local"],
-  server: true
+  server: false
 
 config :piano_ui, :libcluster_strategy, Cluster.Strategy.Epmd
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
@@ -199,7 +198,6 @@ config :fw, :viewport,
 config :phoenix, :json_library, Jason
 
 config :govee_phx, GoveePhxWeb.Endpoint,
-  http: [port: 4004, transport_options: [num_acceptors: 2]],
   url: [host: "govee.#{mdns_hostname}.local", port: 80],
   secret_key_base: "o3BDCy1862hqmkdyE7tMMrZDoUfLfty5U8JJXDEvmCAWj8ZqIUZmmuEmqxX5jBCv",
   render_errors: [view: GoveePhxWeb.ErrorView, accepts: ~w(html json), layout: false],
@@ -207,7 +205,7 @@ config :govee_phx, GoveePhxWeb.Endpoint,
   live_view: [signing_salt: "3J2S31Z1"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["http://govee.#{mdns_hostname}.local"],
-  server: true
+  server: false
 
 config :govee_phx,
   # The devices are set in `.target.secret.exs` so that they're not defined in the repository
