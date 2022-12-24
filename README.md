@@ -24,3 +24,6 @@ Sub-application Repos:
 - https://github.com/axelson/govee_semaphore
 - https://github.com/axelson/scenic_launcher
 - https://github.com/axelson/scenic_asteroids
+
+Troubleshooting:
+- `mkdir _build/rpi3_dev/lib/play/static`

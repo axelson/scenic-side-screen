@@ -175,6 +175,8 @@ config :piano_ui, PianoUi.Repo,
   temp_store: :memory,
   pool_size: 1
 
+config :piano_ui, meeting_module: Fw.Meeting
+
 config :pomodoro, ecto_repos: [Pomodoro.Repo]
 
 config :pomodoro, Pomodoro.Repo,
