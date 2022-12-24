@@ -64,6 +64,9 @@ defmodule Fw.MixProject do
       {:phoenix_live_dashboard, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
 
+      # {:keylight, github: "lawik/keylight"},
+      # Waiting on https://github.com/lawik/keylight/pull/2
+      {:keylight, github: "axelson/keylight", branch: "minor-updates"},
       # {:livebook, "~> 0.5.2", only: [:dev, :prod]},
       {:livebook, github: "axelson/livebook", branch: "jax", only: [:dev, :prod]},
       # {:livebook, path: "~/dev/forks/livebook", only: [:dev, :prod]},
@@ -80,7 +83,7 @@ defmodule Fw.MixProject do
       {:boundary, "~> 0.9"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
-      {:nerves, "~> 1.6", runtime: false, targets: @all_targets},
+      {:nerves, "~> 1.9", runtime: false, targets: @all_targets},
       {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:circuits_gpio, "~> 1.0 or ~> 0.4", targets: @all_targets},

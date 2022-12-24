@@ -118,7 +118,16 @@ config :mdns_lite,
       transport: "tcp",
       port: 4369
     }
-  ]
+  ],
+
+  # Configure DNS bridge
+  dns_bridge_enabled: true,
+  dns_bridge_ip: {127, 0, 0, 53},
+  dns_bridge_port: 53,
+  dns_bridge_recursive: true
+
+config :vintage_net,
+  additional_name_servers: [{127, 0, 0, 53}]
 
 config :launcher, :backlight_module, Fw.Backlight
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
