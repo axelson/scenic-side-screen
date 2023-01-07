@@ -26,6 +26,14 @@ defmodule Fw.KeylightController do
     GenServer.call(name, :get_devices)
   end
 
+  def set(name \\ __MODULE__, opts) do
+    GenServer.call(name, {:set, opts})
+  end
+
+  def status(name \\ __MODULE__) do
+    GenServer.call(name, :status)
+  end
+
   @impl GenServer
   def init(opts) do
     {:ok, nil, {:continue, opts}}
@@ -65,5 +73,15 @@ defmodule Fw.KeylightController do
 
   def handle_call(:get_devices, _from, %State{} = state) do
     {:reply, state.devices, state}
+  end
+
+  def handle_call({:set, opts}, _from, %State{} = state) do
+    reply = Keylight.set(state.devices, opts)
+    {:reply, reply, state}
+  end
+
+  def handle_call(:status, _from, %State{} = state) do
+    reply = Keylight.status(state.devices)
+    {:reply, reply, state}
   end
 end

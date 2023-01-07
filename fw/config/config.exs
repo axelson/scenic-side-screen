@@ -176,6 +176,7 @@ config :piano_ui, PianoUi.Repo,
   pool_size: 1
 
 config :piano_ui, meeting_module: Fw.Meeting
+config :piano_ui, keylight_module: Fw.KeylightImpl
 
 config :pomodoro, ecto_repos: [Pomodoro.Repo]
 
