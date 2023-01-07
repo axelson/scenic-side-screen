@@ -36,6 +36,11 @@ defmodule Fw.KeylightImpl do
   end
 
   @impl PianoUi.KeylightBehaviour
+  def reset do
+    Fw.KeylightController.reset()
+  end
+
+  @impl PianoUi.KeylightBehaviour
   def set(opts) do
     Fw.KeylightController.set(opts)
   end
