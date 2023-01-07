@@ -82,6 +82,7 @@
   "piano_ctl": {:git, "https://github.com/axelson/piano_ex.git", "e8f00712a36ac70687c64918c7f61a4cf62ab880", [sparse: "piano_ctl"]},
   "piano_ui": {:git, "https://github.com/axelson/piano_ex.git", "e8f00712a36ac70687c64918c7f61a4cf62ab880", [sparse: "piano_ui"]},
   "pid_file": {:hex, :pid_file, "0.1.1", "66eb4dc73c15852405d99ccf0982f8fdac8fa7084b8ec82057c2b3391e8e6b0d", [:mix], [], "hexpm", "10bc02c6fde8a51e6c0c8404703fdc63e035dea41d5bc97d518135dd0fa10266"},
+  "pinout": {:git, "https://github.com/axelson/pinout.git", "967339d94573dd2fcd343d58f9852f17074a7def", [branch: "add-rpi-3b-plus-files"]},
   "play": {:git, "https://github.com/axelson/scenic_asteroids.git", "09a6040045c93cbf0f18152d23cb909299f12f7c", [sparse: "play", branch: "js-multiplayer2"]},
   "play_web": {:git, "https://github.com/axelson/scenic_asteroids.git", "09a6040045c93cbf0f18152d23cb909299f12f7c", [sparse: "play_web", branch: "js-multiplayer2"]},
   "plug": {:hex, :plug, "1.13.6", "187beb6b67c6cec50503e940f0434ea4692b19384d47e5fdfd701e93cadb4cc2", [:mix], [{:mime, "~> 1.0 or ~> 2.0", [hex: :mime, repo: "hexpm", optional: false]}, {:plug_crypto, "~> 1.1.1 or ~> 1.2", [hex: :plug_crypto, repo: "hexpm", optional: false]}, {:telemetry, "~> 0.4.3 or ~> 1.0", [hex: :telemetry, repo: "hexpm", optional: false]}], "hexpm", "02b9c6b9955bce92c829f31d6284bf53c591ca63c4fb9ff81dfd0418667a34ff"},

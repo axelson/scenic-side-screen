@@ -77,6 +77,9 @@ defmodule Fw.MixProject do
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
+      # {:pinout, "~> 0.1"},
+      # {:pinout, path: "~/dev/forks/pinout"},
+      {:pinout, github: "axelson/pinout", branch: "add-rpi-3b-plus-files"},
       {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
 
       # Supporting
