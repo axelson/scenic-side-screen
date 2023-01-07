@@ -138,7 +138,8 @@ config :launcher,
      {PianoUi.Scene.Dashboard, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     # {"pomodoro", "Pomodoro", {PomodoroUi.Scene.MiniComponent, t: {595, 69}, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, []}},
-    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}}
+    {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
+    {"keylight", "Keylight", {PianoUi.KeylightScene, []}},
   ]
 
 config :master_proxy,
