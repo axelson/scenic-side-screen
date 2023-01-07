@@ -67,6 +67,11 @@ defmodule Fw.MixProject do
       # {:keylight, github: "lawik/keylight"},
       # Waiting on https://github.com/lawik/keylight/pull/2
       {:keylight, github: "axelson/keylight", branch: "minor-updates"},
+      # {:keylight, path: "~/dev/forks/keylight"},
+
+      # Waiting on https://github.com/nerves-networking/mdns_lite/pull/98
+      # {:mdns_lite, github: "axelson/mdns_lite", branch: "add_get_by_mdns", override: true},
+
       # {:livebook, "~> 0.5.2", only: [:dev, :prod]},
       {:livebook, github: "axelson/livebook", branch: "jax", only: [:dev, :prod]},
       # {:livebook, path: "~/dev/forks/livebook", only: [:dev, :prod]},
