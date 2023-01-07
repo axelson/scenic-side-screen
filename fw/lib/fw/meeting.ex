@@ -58,7 +58,7 @@ defmodule Fw.KeylightImpl do
         {:ok, result}
 
       other ->
-        Logger.info("Received unexpected status: #{inspect(other, pretty: true)}")
+        Logger.info("#{__MODULE__} Received unexpected status: #{inspect(other, pretty: true)}")
         {:error, :unable_to_determine_status}
     end
   end
