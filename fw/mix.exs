@@ -41,7 +41,7 @@ defmodule Fw.MixProject do
   def application do
     [
       mod: {Fw.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :ssh, :runtime_tools]
     ]
   end
 
@@ -63,6 +63,9 @@ defmodule Fw.MixProject do
       {:phoenix_live_view, "~> 0.17.0"},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+
+      # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
+      {:ssh_client_key_api, github: "axelson/ssh_client_key_api", branch: "support-erlang-otp-25"},
 
       # {:keylight, github: "lawik/keylight"},
       # Waiting on https://github.com/lawik/keylight/pull/2
