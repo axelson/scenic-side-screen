@@ -34,6 +34,10 @@ defmodule Fw.KeylightController do
     GenServer.call(name, :status)
   end
 
+  def connected?(name \\ __MODULE__) do
+    GenServer.call(name, :connected?)
+  end
+
   @impl GenServer
   def init(opts) do
     {:ok, nil, {:continue, opts}}
@@ -93,11 +97,13 @@ defmodule Fw.KeylightController do
     {:reply, reply, state}
   end
 
+  def handle_call(:connected?, _from, %State{} = state) do
+    {:reply, state.connected?, state}
+  end
+
   @impl GenServer
   def handle_info(:poll, %State{} = state) do
-    Logger.info("polling keylight status")
     connected? = check_connected(state.devices)
-    Logger.info("new connected? is #{inspect(connected?)}")
     broadcast_connected(connected?)
 
     state = %State{state | connected?: connected?}
@@ -111,9 +117,6 @@ defmodule Fw.KeylightController do
         Enum.any?(map, fn
           {_, {:ok, _}} -> true
           {_, {:error, _}} -> false
-        end)
-        |> tap(fn res ->
-          Logger.info("check_connected res: #{inspect(res, pretty: true)}")
         end)
 
       other ->

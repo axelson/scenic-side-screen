@@ -130,6 +130,7 @@ config :vintage_net,
   additional_name_servers: [{127, 0, 0, 53}]
 
 config :launcher, :backlight_module, Fw.Backlight
+config :launcher, :sleep_all_module, Fw.SleepAll
 config :launcher, :reboot_mfa, {Nerves.Runtime, :reboot, []}
 
 config :launcher,

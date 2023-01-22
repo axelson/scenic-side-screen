@@ -33,6 +33,15 @@ iex> Pomodoro.Release.migrate()
 - http://govee.nerves-side-screen.local
 - http://asteroids.nerves-side-screen.local
 
+# Installing suspend scripts
+
+``` sh
+sudo cp contrib/arch_linux_desktop_suspend.sh /root/suspend.sh
+```
+
+Add a line like this to your `~/.ssh/authorized_keys` for the ssh key:
+`command="sudo /root/suspend.sh" ssh-ed25519 AAAAC3N<snip>UnkHUj jason@jdesktop`
+
 # Troubleshooting
 
 If scenic doesn't launch then you may be affected by the bug https://github.com/boydm/scenic_new/issues/36 to fix it run the following:
@@ -41,6 +50,11 @@ rm -rf _build
 dotenv mix firmware
 mix firmware.burn
 ```
+
+To fix the following error:
+> (File.CopyError) could not copy recursively from "/home/jason/dev/scenic-side-screen/fw/_build/rpi3_dev/lib/play/priv" to "/home/jason/dev/scenic-side-screen/fw/_build/rpi3_dev/rel/fw/lib/play-0.1.0/priv". /home/jason/dev/scenic-side-screen/fw/_build/rpi3_dev/lib/play/static: no such file or directory
+
+Run: `mkdir _build/rpi3_dev/lib/play/static`
 
 # Asteroids Nerves Application
 

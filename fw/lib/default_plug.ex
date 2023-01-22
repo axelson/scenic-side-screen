@@ -1,5 +1,5 @@
 defmodule Fw.DefaultPlug do
-  import Phoenix.LiveView.Helpers
+  import Phoenix.Component
 
   def init(opts), do: opts
 

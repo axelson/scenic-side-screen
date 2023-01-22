@@ -50,6 +50,7 @@ defmodule Fw.MixProject do
     [
       # Part of the application
       dep(:govee, :github),
+      # dep(:govee_scenic, :github),
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
       dep(:launcher, :github),
@@ -60,8 +61,14 @@ defmodule Fw.MixProject do
       dep(:pomodoro, :github),
 
       {:phoenix, "~> 1.6.7"},
-      {:phoenix_live_view, "~> 0.17.0"},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      # {:phoenix_live_view, "~> 0.18.7"},
+      # {:phoenix_live_view, "0.17.12"},
+      # https://github.com/hexpm/hex/issues/972
+      {:phoenix_live_view, "0.18.7", override: true},
+
+      # https://github.com/hexpm/hex/issues/972
+      {:phoenix_live_dashboard, "0.7.2", override: true},
+
       {:telemetry_poller, "~> 1.0"},
 
       # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
@@ -76,7 +83,7 @@ defmodule Fw.MixProject do
       # {:mdns_lite, github: "axelson/mdns_lite", branch: "add_get_by_mdns", override: true},
 
       # {:livebook, "~> 0.5.2", only: [:dev, :prod]},
-      {:livebook, github: "axelson/livebook", branch: "jax", only: [:dev, :prod]},
+      {:livebook, github: "axelson/livebook", only: [:dev, :prod]},
       # {:livebook, path: "~/dev/forks/livebook", only: [:dev, :prod]},
       # For livebook
       {:vega_lite, ">= 0.0.0"},
@@ -108,9 +115,9 @@ defmodule Fw.MixProject do
       # {:scenic, github: "boydm/scenic", branch: "input_and_drivers", override: true},
       # {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
 
-      {:scenic, github: "boydm/scenic", override: true},
-      # {:scenic, "~> 0.11.0-beta.0", override: true},
-      {:scenic_driver_local, "~> 0.11.0-beta.0"},
+      # {:scenic, github: "boydm/scenic", override: true},
+      {:scenic, "~> 0.11"},
+      {:scenic_driver_local, "~> 0.11"},
 
       # {:scenic, path: "~/dev/forks/scenic", override: true},
       # {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", targets: @all_targets},
@@ -127,12 +134,12 @@ defmodule Fw.MixProject do
   defp dep(:launcher, :path), do: {:launcher, path: "../../launcher", override: true}
   defp dep(:launcher, :github), do: {:launcher, github: "axelson/scenic_launcher"}
 
-  defp dep(:play, :path), do: {:play, path: "../../play", override: true}
+  defp dep(:play, :path), do: {:play, path: "../../scenic_asteroids/play", override: true}
 
   defp dep(:play, :github),
     do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer2", override: true}
 
-  defp dep(:play_web, :path), do: {:play_web, path: "../../play_web", override: true}
+  defp dep(:play_web, :path), do: {:play_web, path: "../../scenic_asteroids/play_web", override: true}
 
   defp dep(:play_web, :github),
     do: {:play_web, github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
@@ -150,11 +157,14 @@ defmodule Fw.MixProject do
   defp dep(:piano_ctl, :path),
     do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true, runtime: false}
 
-  defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
+  defp dep(:govee, :github), do: {:govee, github: "axelson/govee", branch: "new-update"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
 
   defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
   defp dep(:govee_phx, :path), do: {:govee_phx, path: "../../govee_phx"}
+
+  defp dep(:govee_scenic, :github), do: {:govee_scenic, github: "axelson/govee_scenic"}
+  defp dep(:govee_scenic, :path), do: {:govee_scenic, path: "../../govee_scenic"}
 
   defp dep(:govee_semaphore, :github), do: {:govee_semaphore, github: "axelson/govee_semaphore"}
 
