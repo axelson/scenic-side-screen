@@ -36,11 +36,14 @@ iex> Pomodoro.Release.migrate()
 # Installing suspend scripts
 
 ``` sh
-sudo cp contrib/arch_linux_desktop_suspend.sh /root/suspend.sh
+cp contrib/arch_linux_desktop_suspend.sh /home/jason/bin/turn_off_screen.sh
 ```
 
 Add a line like this to your `~/.ssh/authorized_keys` for the ssh key:
-`command="sudo /root/suspend.sh" ssh-ed25519 AAAAC3N<snip>UnkHUj jason@jdesktop`
+`command="/home/jason/turn_off_screen.sh" ssh-ed25519 AAAAC3N<snip>UnkHUj jason@jdesktop`
+
+Alternatively you could run it with sudo by adding a line like this with `visudo`:
+`jason ALL=(root) NOPASSWD: /root/suspend.sh`
 
 # Troubleshooting
 
