@@ -64,7 +64,7 @@ defmodule Fw.MixProject do
       # {:phoenix_live_view, "~> 0.18.7"},
       # {:phoenix_live_view, "0.17.12"},
       # https://github.com/hexpm/hex/issues/972
-      {:phoenix_live_view, "0.18.7", override: true},
+      {:phoenix_live_view, "0.18.11", override: true},
 
       # https://github.com/hexpm/hex/issues/972
       {:phoenix_live_dashboard, "0.7.2", override: true},
