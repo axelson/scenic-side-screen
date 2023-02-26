@@ -49,6 +49,20 @@ config :nerves, :erlinit,
 config :logger,
   backends: [RamoopsLogger, RingLogger]
 
+config :logger, RingLogger,
+  buffers: %{
+    low_priority: %{
+      levels: [:warning, :notice, :info, :debug],
+      max_size: 2048
+    },
+    high_priority: %{
+      levels: [:emergency, :alert, :critical, :error],
+      max_size: 2048
+    }
+  },
+  metadata: [:mfa, :line],
+  format: "$time $metadata[$level] $message\n"
+
 config :blue_heron, log_hci_dump_file: false
 
 config :scenic, :assets, module: Fw.Assets
