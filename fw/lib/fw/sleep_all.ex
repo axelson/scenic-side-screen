@@ -21,6 +21,13 @@ defmodule Fw.SleepAll do
       )
     end)
 
+    Task.start(fn ->
+      GoveePhxApplication.BLESupervisor.get_conns()
+      |> Enum.each(fn conn ->
+        GoveePhxApplication.BLESupervisor.execute_command(Govee.Command.turn_off(), conn)
+      end)
+    end)
+
     PianoUi.remote_cmd(:stop)
   end
 end

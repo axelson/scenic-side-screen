@@ -10,6 +10,7 @@ defmodule Fw.JaxSSH do
     key = File.open!(key_path)
     known_hosts = File.open!(known_hosts_path, [:read, :write])
 
+    # NOTE: with_options has a dialyzer error
     key_cb =
       SSHClientKeyAPI.with_options(
         identity: key,
