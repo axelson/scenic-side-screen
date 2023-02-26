@@ -125,7 +125,7 @@ defmodule Fw.MixProject do
       # {:scenic_driver_local, path: "deps/scenic_driver_local", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :hex),
+      dep(:blue_heron, :github),
       dep(:blue_heron_transport_uart, :hex)
     ]
     |> List.flatten()
