@@ -13,8 +13,21 @@ defmodule Fw.SleepAll do
     end)
 
     Task.start(fn ->
+      # If my cursor is on the laptop, then when the laptop goes to sleep my
+      # cursor comes back to the desktop causing the desktop to wake up. I solve
+      # this by telling the desktop to sleep again
+      Process.sleep(3_000)
       Fw.JaxSSH.connect(
-        ip: "192.168.1.7",
+        ip: "192.168.1.4",
+        key_path: "/data/desktop_sleep_screen_ed25519",
+        known_hosts_path: "/tmp/known_hosts",
+        user: "jason"
+      )
+    end)
+
+    Task.start(fn ->
+      Fw.JaxSSH.connect(
+        ip: "192.168.1.18",
         key_path: "/data/felt_laptop_sleep_screen_ed25519",
         known_hosts_path: "/tmp/known_hosts",
         user: "jason"
