@@ -42,6 +42,10 @@ defmodule Fw.SleepAll do
       end)
     end)
 
+    Task.start(fn ->
+      Fw.KeylightController.off()
+    end)
+
     PianoUi.remote_cmd(:stop)
   end
 end
