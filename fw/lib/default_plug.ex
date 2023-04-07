@@ -8,6 +8,7 @@ defmodule Fw.DefaultPlug do
       domains:
         [
           Application.fetch_env!(:fw, :govee_phx_domain),
+          Application.fetch_env!(:fw, :pomodoro_phx_domain),
           Application.fetch_env!(:fw, :asteroids_domain),
           Application.fetch_env!(:fw, :livebook_domain)
         ]

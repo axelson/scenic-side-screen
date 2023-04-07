@@ -58,13 +58,14 @@ defmodule Fw.MixProject do
       dep(:piano_ui, :github),
       dep(:play, :github),
       dep(:play_web, :github),
-      dep(:pomodoro, :github),
+      dep(:pomodoro, :path),
+      dep(:pomodoro_phx, :path),
 
-      {:phoenix, "~> 1.6.7"},
+      {:phoenix, "~> 1.7.0"},
       # {:phoenix_live_view, "~> 0.18.7"},
       # {:phoenix_live_view, "0.17.12"},
       # https://github.com/hexpm/hex/issues/972
-      {:phoenix_live_view, "0.18.11", override: true},
+      # {:phoenix_live_view, "0.18.11", override: true},
 
       # https://github.com/hexpm/hex/issues/972
       {:phoenix_live_dashboard, "0.7.2", override: true},
@@ -95,7 +96,8 @@ defmodule Fw.MixProject do
       # {:pinout, "~> 0.1"},
       # {:pinout, path: "~/dev/forks/pinout"},
       {:pinout, github: "axelson/pinout", branch: "add-rpi-3b-plus-files"},
-      {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
+      # {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
+      {:main_proxy, github: "Main-Proxy/main_proxy", branch: "main"},
 
       # Supporting
       {:boundary, "~> 0.9"},
@@ -146,6 +148,9 @@ defmodule Fw.MixProject do
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}
+
+  defp dep(:pomodoro_phx, :github), do: {:pomodoro_phx, github: "axelson/pomodoro_phx"}
+  defp dep(:pomodoro_phx, :path), do: {:pomodoro_phx, path: "../../pomodoro_phx", override: true}
 
   defp dep(:piano_ui, :github), do: {:piano_ui, github: "axelson/piano_ex", sparse: "piano_ui"}
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}

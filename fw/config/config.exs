@@ -110,6 +110,7 @@ config :mdns_lite,
     :hostname,
     mdns_hostname,
     "govee.#{mdns_hostname}",
+    "pomodoro.#{mdns_hostname}",
     "asteroids.#{mdns_hostname}",
     "livebook.#{mdns_hostname}"
   ],
@@ -157,11 +158,12 @@ config :launcher,
     {"keylight", "Keylight", {PianoUi.KeylightScene, []}},
   ]
 
-config :master_proxy,
+config :main_proxy,
   http: [:inet6, port: 80]
 
 config :fw,
   govee_phx_domain: "govee.#{mdns_hostname}.local",
+  pomodoro_phx_domain: "pomodoro.#{mdns_hostname}.local",
   asteroids_domain: "asteroids.#{mdns_hostname}.local",
   livebook_domain: "livebook.#{mdns_hostname}.local"
 
@@ -236,6 +238,16 @@ config :govee_phx,
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
+
+config :pomodoro_phx, PomodoroPhxWeb.Endpoint,
+  url: [host: "pomodoro.#{mdns_hostname}.local", port: 80],
+  render_errors: [
+    formats: [html: PomodoroPhxWeb.ErrorHTML, json: PomodoroPhxWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: PomodoroPhx.PubSub,
+  live_view: [signing_salt: "63Bjta55"],
+  server: false
 
 # Livebook's explore section is built at compile-time
 config :livebook, :explore_notebooks, []

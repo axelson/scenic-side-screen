@@ -1,6 +1,8 @@
 defmodule Fw.MyProxy do
-  use MasterProxy,
-    backends: [
+  use MainProxy.Proxy
+
+  def backends do
+    [
       %{
         domain: Application.fetch_env!(:fw, :govee_phx_domain),
         phoenix_endpoint: GoveePhxWeb.Endpoint
@@ -10,6 +12,10 @@ defmodule Fw.MyProxy do
         phoenix_endpoint: PlayWeb.Endpoint
       },
       %{
+        domain: Application.fetch_env!(:fw, :pomodoro_phx_domain),
+        phoenix_endpoint: PomodoroPhxWeb.Endpoint
+      },
+      %{
         domain: Application.fetch_env!(:fw, :livebook_domain),
         phoenix_endpoint: LivebookWeb.Endpoint
       },
@@ -17,6 +23,7 @@ defmodule Fw.MyProxy do
         plug: Fw.DefaultPlug
       },
     ]
+  end
 
   # # Optional callback
   # @impl MasterProxy
