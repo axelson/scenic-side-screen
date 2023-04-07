@@ -43,4 +43,18 @@ defmodule Fw.JaxSSH do
     :ssh_connection.close(conn, channel_id)
     :ssh.close(conn)
   end
+
+  def run_command(command, opts \\ []) when is_binary(command) do
+    ip = Keyword.get(opts, :ip)
+    port = Keyword.get(opts, :port, 22)
+    {_, ssh_config} = config(opts)
+
+    {:ok, conn} = :ssh.connect(to_charlist(ip), port, ssh_config)
+    {:ok, channel_id} = :ssh_connection.session_channel(conn, 5000)
+    _shell = :ssh_connection.exec(conn, channel_id, to_charlist(command), 5000)
+    # Sleep to let the command run on the external machine
+    Process.sleep(5_000)
+    :ssh_connection.close(conn, channel_id)
+    :ssh.close(conn)
+  end
 end

@@ -7,6 +7,15 @@ defmodule Fw.Meeting do
     Logger.info("Fw start meeting")
     Fw.KeylightController.on()
 
+    Task.start(fn ->
+      Fw.JaxSSH.run_command("SwitchToHyperXAudio",
+        ip: "192.168.1.18",
+        key_path: "/data/felt_laptop_run_command_ed25519",
+        known_hosts_path: "/tmp/known_hosts",
+        user: "jason"
+      )
+    end)
+
     # 2022-12-23 Disabling because it looks bad on my video
     # GoveeSemaphore.start_meeting()
   end
@@ -15,6 +24,15 @@ defmodule Fw.Meeting do
   def finish_meeting do
     Logger.info("Fw finish meeting")
     Fw.KeylightController.off()
+
+    Task.start(fn ->
+      Fw.JaxSSH.run_command("SwitchToDockAudio",
+        ip: "192.168.1.18",
+        key_path: "/data/felt_laptop_run_command_ed25519",
+        known_hosts_path: "/tmp/known_hosts",
+        user: "jason"
+      )
+    end)
 
     # 2022-12-23 Disabling because it looks bad on my video
     # GoveeSemaphore.finish_meeting()
