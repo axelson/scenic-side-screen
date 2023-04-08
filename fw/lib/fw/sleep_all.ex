@@ -36,10 +36,7 @@ defmodule Fw.SleepAll do
     end)
 
     Task.start(fn ->
-      GoveePhxApplication.BLESupervisor.get_conns()
-      |> Enum.each(fn conn ->
-        GoveePhxApplication.BLESupervisor.execute_command(Govee.Command.turn_off(), conn)
-      end)
+      GoveePhx.all_off()
     end)
 
     Task.start(fn ->
