@@ -58,8 +58,8 @@ defmodule Fw.MixProject do
       dep(:piano_ui, :github),
       dep(:play, :github),
       dep(:play_web, :github),
-      dep(:pomodoro, :path),
-      dep(:pomodoro_phx, :path),
+      dep(:pomodoro, :github),
+      dep(:pomodoro_phx, :github),
 
       {:phoenix, "~> 1.7.0"},
       # {:phoenix_live_view, "~> 0.18.7"},
