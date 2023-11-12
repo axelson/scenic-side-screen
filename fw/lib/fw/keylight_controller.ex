@@ -120,7 +120,7 @@ defmodule Fw.KeylightController do
         end)
 
       other ->
-        Logger.warn("assuming not connected based on status result: #{inspect(other)}")
+        Logger.warning("assuming not connected based on status result: #{inspect(other)}")
         false
     end
   end

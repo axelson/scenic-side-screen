@@ -26,6 +26,7 @@ defmodule Fw.Application do
 
   def children(_target) do
     main_viewport_config = Application.get_env(:fw, :viewport)
+
     [
       {Scenic, [main_viewport_config]},
       # Starts a worker by calling: Fw.Worker.start_link(arg)
@@ -34,7 +35,8 @@ defmodule Fw.Application do
       Fw.StartClustering,
       Fw.KeylightController,
       {Pomodoro.PomodoroTimer, []},
-      Fw.MyProxy,
+      Fw.QuantumScheduler,
+      Fw.MyProxy
     ]
   end
 end

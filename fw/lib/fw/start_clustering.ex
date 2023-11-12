@@ -21,7 +21,10 @@ defmodule Fw.StartClustering do
   end
 
   @impl GenServer
-  def handle_info({VintageNet, ["interface", "eth0", "connection"], _, :internet, _metadata}, state) do
+  def handle_info(
+        {VintageNet, ["interface", "eth0", "connection"], _, :internet, _metadata},
+        state
+      ) do
     connect_remote_nodes()
     {:noreply, state}
   end
@@ -35,6 +38,7 @@ defmodule Fw.StartClustering do
     Application.fetch_env!(:fw, :nodes)
     |> Enum.each(fn node ->
       Logger.info("Trying to connect to #{node}")
+
       case Node.connect(node) do
         true -> Logger.info("Connected to #{node}")
         false -> Logger.info("Unable to connect to #{node}")

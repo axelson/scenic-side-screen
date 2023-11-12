@@ -14,6 +14,7 @@ defmodule Fw.RuntimeConfigProvider do
         secret_key_base: "f3oOjxCAcecru17e08gpPflY5fBVM6CIlErkJmHGId97dm2RjRImhURa7dc5i+21",
         live_view: [signing_salt: "7u3jXALN3l3krX/Nd6XNeC27gxwAxZV2"]
   """
+
   # NOTE: Logger messages are not used here because they are not being reported by RingLogger
 
   @behaviour Config.Provider

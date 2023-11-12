@@ -4,7 +4,7 @@ defmodule Fw.JaxSSH do
   def config(opts \\ []) do
     key_path = Keyword.get(opts, :key_path)
     known_hosts_path = Keyword.get(opts, :known_hosts_path)
-    passphrase = Keyword.get(opts, :passphrase, '')
+    passphrase = Keyword.get(opts, :passphrase, ~c"")
     user = Keyword.get(opts, :user)
 
     key = File.open!(key_path)
@@ -21,7 +21,7 @@ defmodule Fw.JaxSSH do
 
     ssh_config = [
       user: to_charlist(user),
-      auth_methods: 'publickey',
+      auth_methods: ~c"publickey",
       user_interaction: false,
       silently_accept_hosts: true,
       key_cb: key_cb

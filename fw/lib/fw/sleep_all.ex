@@ -35,14 +35,6 @@ defmodule Fw.SleepAll do
       )
     end)
 
-    Task.start(fn ->
-      GoveePhx.all_off()
-    end)
-
-    Task.start(fn ->
-      Fw.KeylightController.off()
-    end)
-
-    PianoUi.remote_cmd(:stop)
+    Fw.stop_for_the_night()
   end
 end

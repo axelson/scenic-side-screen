@@ -142,7 +142,7 @@ defmodule GoveeBulb do
 
   # Sent if a connection is dropped
   def handle_info({BlueHeron.ATT.Client, _, %DisconnectionComplete{reason_name: reason}}, state) do
-    Logger.warn("Govee LED connection dropped: #{reason}")
+    Logger.warning("Govee LED connection dropped: #{reason}")
     {:noreply, %{state | connected?: false}}
   end
 
@@ -163,7 +163,7 @@ defmodule GoveeBulb do
   # Assembles the raw RGB data into a binary that the bulb expects
   # this was found here https://github.com/Freemanium/govee_btled#analyzing-the-traffic
   def handle_call({:set_color, _rgb}, _from, %{connected?: false} = state) do
-    Logger.warn("Not currently connected to a bulb")
+    Logger.warning("Not currently connected to a bulb")
     {:reply, {:error, :disconnected}, state}
   end
 
@@ -182,7 +182,7 @@ defmodule GoveeBulb do
   end
 
   def handle_call(:turn_off, _from, %{connected?: false} = state) do
-    Logger.warn("Not connected to a bulb")
+    Logger.warning("Not connected to a bulb")
     {:reply, {:error, :disconnected}, state}
   end
 
@@ -201,7 +201,7 @@ defmodule GoveeBulb do
   end
 
   def handle_call(:turn_on, _from, %{connected?: false} = state) do
-    Logger.warn("Not connected to a bulb")
+    Logger.warning("Not connected to a bulb")
     {:reply, {:error, :disconnected}, state}
   end
 
@@ -244,7 +244,7 @@ defmodule GoveeBulb do
         {:reply, :ok, state}
 
       error ->
-        Logger.warn("Failed to set white #{inspect(error)}")
+        Logger.warning("Failed to set white #{inspect(error)}")
         {:reply, error, state}
     end
   end

@@ -58,9 +58,9 @@ defmodule Fw.MixProject do
       dep(:piano_ui, :github),
       dep(:play, :github),
       dep(:play_web, :github),
-      dep(:pomodoro, :github),
-      dep(:pomodoro_phx, :github),
-
+      dep(:pomodoro, :path),
+      dep(:pomodoro_phx, :path),
+      {:quantum, "~> 3.5"},
       {:phoenix, "~> 1.7.0"},
       # {:phoenix_live_view, "~> 0.18.7"},
       # {:phoenix_live_view, "0.17.12"},
@@ -68,12 +68,13 @@ defmodule Fw.MixProject do
       # {:phoenix_live_view, "0.18.11", override: true},
 
       # https://github.com/hexpm/hex/issues/972
-      {:phoenix_live_dashboard, "0.7.2", override: true},
+      # {:phoenix_live_dashboard, "0.7.2", override: true},
 
       {:telemetry_poller, "~> 1.0"},
 
       # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
-      {:ssh_client_key_api, github: "axelson/ssh_client_key_api", branch: "support-erlang-otp-25"},
+      {:ssh_client_key_api,
+       github: "axelson/ssh_client_key_api", branch: "support-erlang-otp-25"},
 
       # {:keylight, github: "lawik/keylight"},
       # Waiting on https://github.com/lawik/keylight/pull/2
@@ -91,7 +92,7 @@ defmodule Fw.MixProject do
       {:kino, ">= 0.0.0"},
       {:power_control, "~> 0.2.0"},
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
-      #{:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
+      # {:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
       # {:pinout, "~> 0.1"},
       # {:pinout, path: "~/dev/forks/pinout"},
@@ -100,6 +101,7 @@ defmodule Fw.MixProject do
       {:main_proxy, github: "Main-Proxy/main_proxy", branch: "main"},
 
       # Supporting
+      {:ecto, "3.10.3", override: true},
       {:boundary, "~> 0.9"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
@@ -139,12 +141,20 @@ defmodule Fw.MixProject do
   defp dep(:play, :path), do: {:play, path: "../../scenic_asteroids/play", override: true}
 
   defp dep(:play, :github),
-    do: {:play, github: "axelson/scenic_asteroids", sparse: "play", branch: "js-multiplayer2", override: true}
+    do:
+      {:play,
+       github: "axelson/scenic_asteroids",
+       sparse: "play",
+       branch: "js-multiplayer2",
+       override: true}
 
-  defp dep(:play_web, :path), do: {:play_web, path: "../../scenic_asteroids/play_web", override: true}
+  defp dep(:play_web, :path),
+    do: {:play_web, path: "../../scenic_asteroids/play_web", override: true}
 
   defp dep(:play_web, :github),
-    do: {:play_web, github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
+    do:
+      {:play_web,
+       github: "axelson/scenic_asteroids", sparse: "play_web", branch: "js-multiplayer2"}
 
   defp dep(:pomodoro, :github), do: {:pomodoro, github: "axelson/pomodoro"}
   defp dep(:pomodoro, :path), do: {:pomodoro, path: "../../pomodoro", override: true}

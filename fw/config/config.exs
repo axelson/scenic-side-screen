@@ -139,7 +139,18 @@ config :mdns_lite,
   dns_bridge_enabled: true,
   dns_bridge_ip: {127, 0, 0, 53},
   dns_bridge_port: 53,
-  dns_bridge_recursive: true
+  # Set to `false` to avoid issues like:
+  # The following arguments were given to :mdns_lite_inet_dns.encode_res_section/3:
+  #
+  #   # 1
+  #   <<218, 163, 129, 128, 0, 1, 0, 4, 0, 0, 0, 1, 1, 48, 4, 112, 111, 111, 108, 3, 110, 116, 112, 3, 111, 114, 103, 0, 0, 1, 0, 1, 192, 12, 0, 1, 0, 1, 0, 0, 0, 58, 0, 4, 216, 31, 17, 12, 192, 12, ...>>
+  #
+  #   # 2
+  #   {4, {["0", "pool", "ntp", "org"], 12, nil, {["pool", "ntp", "org"], 14, {["ntp", "org"], 19, nil, {["org"], 23, nil, nil}}, nil}}}
+  #
+  #   # 3
+  #   [{:dns_rr_opt, ~c".", :opt, 512, 0, 0, 0, "", false}]
+  dns_bridge_recursive: false
 
 config :vintage_net,
   additional_name_servers: [{127, 0, 0, 53}]
@@ -155,7 +166,7 @@ config :launcher,
     # {"pomodoro", "Pomodoro", {PomodoroUi.Scene.MiniComponent, t: {595, 69}, pomodoro_timer_pid: Pomodoro.PomodoroTimer}},
     {"pomodoro", "Pomodoro", {PomodoroUi.Scene.Main, []}},
     {"asteroids", "Asteroids", {Play.Scene.Splash, Play.Scene.Asteroids}},
-    {"keylight", "Keylight", {PianoUi.KeylightScene, []}},
+    {"keylight", "Keylight", {PianoUi.KeylightScene, []}}
   ]
 
 config :main_proxy,
@@ -248,6 +259,11 @@ config :pomodoro_phx, PomodoroPhxWeb.Endpoint,
   pubsub_server: PomodoroPhx.PubSub,
   live_view: [signing_salt: "63Bjta55"],
   server: false
+
+config :fw, Dash.QuantumScheduler,
+  jobs: [
+    {"0 2 * * *", {Fw, :stop_for_the_night, []}}
+  ]
 
 # Livebook's explore section is built at compile-time
 config :livebook, :explore_notebooks, []

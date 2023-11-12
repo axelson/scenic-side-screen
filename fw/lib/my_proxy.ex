@@ -21,7 +21,7 @@ defmodule Fw.MyProxy do
       },
       %{
         plug: Fw.DefaultPlug
-      },
+      }
     ]
   end
 
