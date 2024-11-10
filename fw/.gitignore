@@ -20,3 +20,4 @@ erl_crash.dump
 .nerves-live-reload
 .target.secret.exs
 .target.secret2.exs
+.target.secret.rpi4.exs

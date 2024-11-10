@@ -1,7 +1,7 @@
 defmodule Fw.MixProject do
   use Mix.Project
 
-  @all_targets [:rpi3]
+  @all_targets [:rpi3, :rpi4]
   @app :fw
 
   def project do

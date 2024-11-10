@@ -8,7 +8,12 @@ import Config
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
-mdns_hostname = "nerves-side-screen"
+mdns_hostname =
+  case Mix.target() do
+    :rpi3 -> "nerves-side-screen"
+    :rpi4 -> "rpi4"
+  end
+
 config :fw, mdns_hostname: mdns_hostname
 
 config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
