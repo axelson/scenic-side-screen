@@ -44,8 +44,13 @@ config :nerves, :erlinit,
   hang_on_exit: true,
   run_on_exit: "/bin/sh",
   print_timing: true,
+  # Disable HDMI output
+  # https://hexdocs.pm/nerves/1.10.5/connecting-to-a-nerves-target.html#hdmi-cable
+  ctty: "ttyAMA0",
   hostname_pattern: "nerves-%s",
   shutdown_report: "/data/last_shutdown.txt"
+
+config :nerves, :erlinit, ctty: "ttyAMA0"
 
 # Use Ringlogger as the logger backend and remove :console.
 # See https://hexdocs.pm/ring_logger/readme.html for more information on

@@ -127,8 +127,8 @@ defmodule Fw.MixProject do
       # {:scenic, github: "boydm/scenic", override: true},
       # {:scenic, "~> 0.11"},
       {:scenic, "~> 0.12.0-rc.0", override: true},
-      # {:scenic_driver_local, "~> 0.11"},
-      {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", override: true},
+      {:scenic_driver_local, "~> 0.11", override: true},
+      # {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", override: true},
 
       # {:scenic, path: "~/dev/forks/scenic", override: true},
       # {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", targets: @all_targets},
