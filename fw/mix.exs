@@ -84,12 +84,6 @@ defmodule Fw.MixProject do
       # Waiting on https://github.com/nerves-networking/mdns_lite/pull/98
       # {:mdns_lite, github: "axelson/mdns_lite", branch: "add_get_by_mdns", override: true},
 
-      # {:livebook, "~> 0.5.2", only: [:dev, :prod]},
-      {:livebook, github: "axelson/livebook", only: [:dev, :prod]},
-      # {:livebook, path: "~/dev/forks/livebook", only: [:dev, :prod]},
-      # For livebook
-      {:vega_lite, ">= 0.0.0"},
-      {:kino, ">= 0.0.0"},
       {:power_control, "~> 0.2.0"},
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       # {:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},

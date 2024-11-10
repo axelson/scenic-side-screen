@@ -16,10 +16,6 @@ defmodule Fw.MyProxy do
         phoenix_endpoint: PomodoroPhxWeb.Endpoint
       },
       %{
-        domain: Application.fetch_env!(:fw, :livebook_domain),
-        phoenix_endpoint: LivebookWeb.Endpoint
-      },
-      %{
         plug: Fw.DefaultPlug
       }
     ]

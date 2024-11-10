@@ -111,8 +111,7 @@ config :mdns_lite,
     mdns_hostname,
     "govee.#{mdns_hostname}",
     "pomodoro.#{mdns_hostname}",
-    "asteroids.#{mdns_hostname}",
-    "livebook.#{mdns_hostname}"
+    "asteroids.#{mdns_hostname}"
   ],
   ttl: 120,
 
@@ -175,8 +174,7 @@ config :main_proxy,
 config :fw,
   govee_phx_domain: "govee.#{mdns_hostname}.local",
   pomodoro_phx_domain: "pomodoro.#{mdns_hostname}.local",
-  asteroids_domain: "asteroids.#{mdns_hostname}.local",
-  livebook_domain: "livebook.#{mdns_hostname}.local"
+  asteroids_domain: "asteroids.#{mdns_hostname}.local"
 
 config :fw, ecto_repos: [PianoUi.Repo, Pomodoro.Repo]
 
@@ -264,9 +262,6 @@ config :fw, Dash.QuantumScheduler,
   jobs: [
     {"0 2 * * *", {Fw, :stop_for_the_night, []}}
   ]
-
-# Livebook's explore section is built at compile-time
-config :livebook, :explore_notebooks, []
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

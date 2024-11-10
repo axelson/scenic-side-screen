@@ -29,7 +29,6 @@ iex> Pomodoro.Release.migrate()
 
 # Accessing the web applications
 
-- http://livebook.nerves-side-screen.local
 - http://govee.nerves-side-screen.local
 - http://asteroids.nerves-side-screen.local
 
