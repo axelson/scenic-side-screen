@@ -53,13 +53,14 @@ defmodule Fw.MixProject do
       # dep(:govee_scenic, :github),
       dep(:govee_phx, :github),
       dep(:govee_semaphore, :github),
-      dep(:launcher, :github),
-      dep(:piano_ctl, :github),
-      dep(:piano_ui, :github),
+      dep(:launcher, :path),
+      dep(:piano_ctl, :path),
+      dep(:piano_ui, :path),
       dep(:play, :github),
       dep(:play_web, :github),
       dep(:pomodoro, :path),
       dep(:pomodoro_phx, :path),
+      {:scenic_widget_contrib, path: "~/dev/forks/scenic-widget-contrib", override: true},
       {:quantum, "~> 3.5"},
       {:phoenix, "~> 1.7.0"},
       # {:phoenix_live_view, "~> 0.18.7"},
@@ -84,6 +85,9 @@ defmodule Fw.MixProject do
       # Waiting on https://github.com/nerves-networking/mdns_lite/pull/98
       # {:mdns_lite, github: "axelson/mdns_lite", branch: "add_get_by_mdns", override: true},
 
+      # TEMP!
+      {:phoenix_ecto, "~> 4.6", override: true},
+
       {:power_control, "~> 0.2.0"},
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       # {:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
@@ -95,7 +99,7 @@ defmodule Fw.MixProject do
       {:main_proxy, github: "Main-Proxy/main_proxy", branch: "main"},
 
       # Supporting
-      {:ecto, "3.10.3", override: true},
+      {:ecto, "3.12.4"},
       {:boundary, "~> 0.9"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
@@ -103,7 +107,14 @@ defmodule Fw.MixProject do
       {:nerves_pack, "~> 0.4", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:circuits_gpio, "~> 1.0 or ~> 0.4", targets: @all_targets},
-      {:nerves_system_rpi3, "~> 1.17", runtime: false, targets: :rpi3},
+      # {:nerves_system_br, "~> 1.25", targets: @all_targets, runtime: false},
+      {:nerves_system_rpi3, "~> 1.25", runtime: false, targets: :rpi3},
+      {:nerves_system_rpi4, "~> 1.25", runtime: false, targets: :rpi4},
+      # {:nerves_system_rpi4,
+      #  path: "/home/jason/dev/forks/nerves_system_rpi4",
+      #  runtime: false,
+      #  targets: :rpi4,
+      #  nerves: [compile: true]},
       # Needed for semi-accurate time for SSL certificates (for requests made by elixir-slack in pomodoro)
       {:nerves_time, "~> 0.2"},
       {:ramoops_logger, "~> 0.3.0"},
@@ -114,8 +125,10 @@ defmodule Fw.MixProject do
       # {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
 
       # {:scenic, github: "boydm/scenic", override: true},
-      {:scenic, "~> 0.11"},
-      {:scenic_driver_local, "~> 0.11"},
+      # {:scenic, "~> 0.11"},
+      {:scenic, "~> 0.12.0-rc.0", override: true},
+      # {:scenic_driver_local, "~> 0.11"},
+      {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", override: true},
 
       # {:scenic, path: "~/dev/forks/scenic", override: true},
       # {:scenic_driver_local, github: "ScenicFramework/scenic_driver_local", targets: @all_targets},
