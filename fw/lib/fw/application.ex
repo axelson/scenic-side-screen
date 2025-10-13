@@ -30,10 +30,12 @@ defmodule Fw.Application do
       {Scenic, [main_viewport_config]},
       # Starts a worker by calling: Fw.Worker.start_link(arg)
       # {Fw.Worker, arg},
+      {Task.Supervisor, name: :fw_task_supervisor},
       Fw.Backlight,
       Fw.StartClustering,
       Fw.KeylightController,
       {Pomodoro.PomodoroTimer, []},
+      Fw.PomodoroObsidianLogger,
       Fw.QuantumScheduler,
       Fw.MyProxy
     ]
