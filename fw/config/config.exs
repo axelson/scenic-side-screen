@@ -12,6 +12,7 @@ mdns_hostname =
   case Mix.target() do
     :rpi3 -> "nerves-side-screen"
     :rpi4 -> "rpi4"
+    :host -> nil
   end
 
 config :fw, mdns_hostname: mdns_hostname
@@ -214,6 +215,7 @@ config :piano_ui, PianoUi.Repo,
 
 config :piano_ui, meeting_module: Fw.Meeting
 config :piano_ui, keylight_module: Fw.KeylightImpl
+config :piano_ui, monitor_control_module: Fw.MonitorControlImpl
 
 config :pomodoro, ecto_repos: [Pomodoro.Repo]
 
