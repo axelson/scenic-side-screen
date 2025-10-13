@@ -44,6 +44,9 @@ Add a line like this to your `~/.ssh/authorized_keys` for the ssh key:
 Alternatively you could run it with sudo by adding a line like this with `visudo`:
 `jason ALL=(root) NOPASSWD: /root/suspend.sh`
 
+## How this works
+This uses the `Fw.JaxSSH` module to SSH in to the computer and run the given script
+
 # Troubleshooting
 
 If scenic doesn't launch then you may be affected by the bug https://github.com/boydm/scenic_new/issues/36 to fix it run the following:

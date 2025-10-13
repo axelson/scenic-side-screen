@@ -1,5 +1,9 @@
 Top-level app that runs multiple scenic apps underneath. Uses a launcher application written in Scenic.
 
+TODO:
+- Get sleep all working on all the screens that I use
+  - Probably need to hook into launcher so that it can take a first crack at keyboard events
+
 Main Dashboard:
 
 ![Screenshot of dashboard application](dashboard_screenshot.png)
@@ -27,3 +31,15 @@ Sub-application Repos:
 
 Troubleshooting:
 - `mkdir _build/rpi3_dev/lib/play/static`
+
+TODO:
+- [ ] Expose LiveDashboard (protect via BasicAuth)
+- [x] Ensure that all the deps are up to date
+- [x] Get 192.168.1.6 to provide links
+  - Currently it just says that no backend matched
+- [x] Remove reliance and mentions of `dotenv`
+- [x] Write example code for RpiFbCapture
+- [x] Ensure there's instructions for copying `.target.secret.example.exs`
+- [ ] Use HTTPS transparently
+  - https://security.stackexchange.com/questions/121163/how-do-i-run-proper-https-on-an-internal-network
+  - https://jsavoie.github.io/2021/06/01/letsencrypt.html
