@@ -78,8 +78,8 @@ defmodule Fw.MixProject do
        github: "axelson/ssh_client_key_api", branch: "support-erlang-otp-25"},
 
       # {:keylight, github: "lawik/keylight"},
-      # Waiting on https://github.com/lawik/keylight/pull/2
-      {:keylight, github: "axelson/keylight", branch: "minor-updates"},
+      # Waiting on https://github.com/lawik/keylight/pull/6
+      {:keylight, github: "axelson/keylight", branch: "static-ip-support"},
       # {:keylight, path: "~/dev/forks/keylight"},
 
       # Waiting on https://github.com/nerves-networking/mdns_lite/pull/98

@@ -49,7 +49,7 @@ defmodule Fw.KeylightController do
     start_delay = Keyword.get(opts, :start_delay, 5_000)
     Process.sleep(start_delay)
 
-    devices = Keylight.discover()
+    devices = initialize_devices()
     Logger.info("keylight devices: #{inspect(devices, pretty: true)}")
 
     connected? = check_connected(devices)
@@ -122,6 +122,14 @@ defmodule Fw.KeylightController do
       other ->
         Logger.warning("assuming not connected based on status result: #{inspect(other)}")
         false
+    end
+  end
+
+  defp initialize_devices do
+    if ip = Application.get_env(:fw, :keylight_ip) do
+      %{ip => Keylight.build_by_ip(ip)}
+    else
+      Keylight.discover()
     end
   end
 
