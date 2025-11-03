@@ -108,8 +108,10 @@ defmodule Fw.MixProject do
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:circuits_gpio, "~> 1.0 or ~> 0.4", targets: @all_targets},
       # {:nerves_system_br, "~> 1.25", targets: @all_targets, runtime: false},
-      {:nerves_system_rpi3, "~> 1.25", runtime: false, targets: :rpi3},
-      {:nerves_system_rpi4, "~> 1.25", runtime: false, targets: :rpi4},
+      # nerves_system_rpi3 1.28.0 scares me ("expect to spend some time on the update")
+      # https://github.com/nerves-project/nerves_system_rpi3/blob/c119823bde3e3863b0c27daf68c6a612222321a4/CHANGELOG.md#v1280
+      {:nerves_system_rpi3, "~> 1.27.1", runtime: false, targets: :rpi3},
+      {:nerves_system_rpi4, "~> 1.27.1", runtime: false, targets: :rpi4},
       # {:nerves_system_rpi4,
       #  path: "/home/jason/dev/forks/nerves_system_rpi4",
       #  runtime: false,
