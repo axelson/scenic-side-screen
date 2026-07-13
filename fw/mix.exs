@@ -60,7 +60,8 @@ defmodule Fw.MixProject do
       dep(:play_web, :github),
       dep(:pomodoro, :github),
       dep(:pomodoro_phx, :github),
-      {:scenic_widget_contrib, path: "~/dev/forks/scenic-widget-contrib", override: true},
+      {:scenic_widget_contrib, github: "axelson/scenic-widget-contrib", branch: "jax", override: true},
+      # {:scenic_widget_contrib, path: "~/dev/forks/scenic-widget-contrib", override: true},
       {:quantum, "~> 3.5"},
       {:phoenix, "~> 1.7.0"},
       # {:phoenix_live_view, "~> 0.18.7"},
@@ -74,8 +75,7 @@ defmodule Fw.MixProject do
       {:telemetry_poller, "~> 1.0"},
 
       # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
-      {:ssh_client_key_api,
-       github: "axelson/ssh_client_key_api", branch: "support-erlang-otp-25"},
+      {:ssh_client_key_api, github: "labzero/ssh_client_key_api", branch: "master"},
 
       # {:keylight, github: "lawik/keylight"},
       # Waiting on https://github.com/lawik/keylight/pull/6
@@ -92,9 +92,9 @@ defmodule Fw.MixProject do
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       # {:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
 
-      # {:pinout, "~> 0.1"},
+      {:pinout, "~> 0.1"},
       # {:pinout, path: "~/dev/forks/pinout"},
-      {:pinout, github: "axelson/pinout", branch: "add-rpi-3b-plus-files"},
+      # {:pinout, github: "axelson/pinout", branch: "add-rpi-3b-plus-files"},
       # {:master_proxy, github: "axelson/master_proxy", branch: "flexiblity-1"},
       {:main_proxy, github: "Main-Proxy/main_proxy", branch: "main"},
 
@@ -138,7 +138,7 @@ defmodule Fw.MixProject do
       # {:scenic_driver_local, path: "deps/scenic_driver_local", targets: @all_targets},
       {:shoehorn, "~> 0.4"},
       {:toolshed, "~> 0.2"},
-      dep(:blue_heron, :github),
+      dep(:blue_heron, :hex),
       dep(:blue_heron_transport_uart, :hex)
     ]
     |> List.flatten()
