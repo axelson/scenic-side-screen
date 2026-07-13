@@ -33,17 +33,7 @@ defmodule Fw.Application do
       {Task.Supervisor, name: :fw_task_supervisor},
       Fw.Backlight,
       Fw.StartClustering,
-      {MuonTrap.Daemon,
-       [
-         "/root/pianobar/pianobar",
-         [],
-         [
-           env: [{"LD_LIBRARY_PATH", "/root/pianobar/lib"}],
-           log_output: :debug,
-           log_prefix: "pianobar: ",
-           stderr_to_stdout: true
-         ]
-       ]},
+      Fw.PianobarDaemon,
       Fw.KeylightController,
       {Pomodoro.PomodoroTimer, []},
       Fw.PomodoroObsidianLogger,
