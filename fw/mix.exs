@@ -175,11 +175,11 @@ defmodule Fw.MixProject do
   defp dep(:piano_ui, :path), do: {:piano_ui, path: "~/dev/piano_ex/piano_ui", override: true}
 
   defp dep(:piano_ctl, :github) do
-    {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true, runtime: false}
+    {:piano_ctl, github: "axelson/piano_ex", sparse: "piano_ctl", override: true}
   end
 
   defp dep(:piano_ctl, :path),
-    do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true, runtime: false}
+    do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true}
 
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee", branch: "new-update"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}

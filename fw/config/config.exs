@@ -202,6 +202,8 @@ config :play_web, PlayWeb.Endpoint,
   check_origin: ["http://asteroids.#{mdns_hostname}.local"],
   server: false
 
+config :piano_ctl, libcluster_hosts: []
+
 config :piano_ui, :libcluster_strategy, Cluster.Strategy.Epmd
 config :piano_ui, :album_cache_dir, "/tmp/piano_ex_album_art/"
 config :piano_ui, ecto_repos: [PianoUi.Repo]
