@@ -61,6 +61,54 @@ To fix the following error:
 
 Run: `mkdir _build/rpi3_dev/lib/play/static`
 
+# Pianobar
+
+Pianobar is managed by `Fw.PianobarDaemon`, which launches it as a supervised Port process. Commands are sent via stdin.
+
+## Selecting a station on startup
+
+When pianobar first starts, it waits at the station selection prompt. So to select a station in that mode type:
+
+```elixir
+Fw.PianobarDaemon.select_station("0")
+```
+
+Replace `"0"` with the desired station number.
+
+## Switching stations during playback
+
+Send `s` to open the station change prompt, then select the station:
+
+```elixir
+Fw.PianobarDaemon.send_command("s")
+Process.sleep(500)
+Fw.PianobarDaemon.select_station("3")
+```
+
+The sleep gives pianobar time to present the station list before sending the selection.
+
+## Listing stations
+
+```elixir
+PianoCtl.list_stations()
+# => [{0, "Station Name"}, {1, "Another Station"}, ...]
+```
+
+The station list is populated from pianobar's event_command output (e.g. on the `usergetstations` event). It will be empty until pianobar has reported its stations at least once.
+
+## Playback controls
+
+```elixir
+Fw.PianobarDaemon.send_command("p")   # pause/unpause
+Fw.PianobarDaemon.send_command("n")   # next track
+Fw.PianobarDaemon.send_command("+")   # love track
+Fw.PianobarDaemon.send_command("-")   # ban track
+Fw.PianobarDaemon.send_command("q")   # quit pianobar
+```
+
+These can also be sent via `PianoCtl.cmd/1` for the commands it supports (`:play_pause`, `:next`, `:play`, `:stop`, `:quit`).
+
+
 # Asteroids Nerves Application
 
 To run the Nerves app:
