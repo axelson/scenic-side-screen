@@ -72,6 +72,9 @@ defmodule Fw.MixProject do
       # https://github.com/hexpm/hex/issues/972
       # {:phoenix_live_dashboard, "0.7.2", override: true},
 
+      # Temporary (until https://github.com/SchedEx/SchedEx/pull/60 is merged and released)
+      {:sched_ex, github: "axelson/SchedEx", branch: "remove-timex", override: true},
+
       {:telemetry_poller, "~> 1.0"},
 
       # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
@@ -85,8 +88,8 @@ defmodule Fw.MixProject do
       # Waiting on https://github.com/nerves-networking/mdns_lite/pull/98
       # {:mdns_lite, github: "axelson/mdns_lite", branch: "add_get_by_mdns", override: true},
 
-      # TEMP!
-      {:phoenix_ecto, "~> 4.6", override: true},
+      # scenic pins elixir_make ~> 0.8.4 but circuits_uart needs ~> 0.6 (which includes 0.10+)
+      {:elixir_make, "~> 0.6", override: true},
 
       {:power_control, "~> 0.2.0"},
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
