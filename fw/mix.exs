@@ -102,7 +102,7 @@ defmodule Fw.MixProject do
       {:main_proxy, github: "Main-Proxy/main_proxy", branch: "main"},
 
       # Supporting
-      {:ecto, "3.12.4"},
+      {:ecto, "~> 3.14"},
       {:boundary, "~> 0.9"},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
@@ -184,7 +184,7 @@ defmodule Fw.MixProject do
   defp dep(:piano_ctl, :path),
     do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true}
 
-  defp dep(:govee, :github), do: {:govee, github: "axelson/govee", branch: "new-update"}
+  defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}
 
   defp dep(:govee_phx, :github), do: {:govee_phx, github: "axelson/govee_phx"}
