@@ -121,6 +121,7 @@ config :mdns_lite,
     :hostname,
     mdns_hostname,
     "govee.#{mdns_hostname}",
+    "piano.#{mdns_hostname}",
     "pomodoro.#{mdns_hostname}",
     "asteroids.#{mdns_hostname}"
   ],
@@ -184,6 +185,7 @@ config :main_proxy,
 
 config :fw,
   govee_phx_domain: "govee.#{mdns_hostname}.local",
+  piano_phx_domain: "piano.#{mdns_hostname}.local",
   pomodoro_phx_domain: "pomodoro.#{mdns_hostname}.local",
   asteroids_domain: "asteroids.#{mdns_hostname}.local"
 
@@ -263,6 +265,16 @@ config :govee_phx,
     uart_opts: [speed: 115_200]
   },
   transport_type: :uart
+
+config :piano_phx, PianoPhx.Endpoint,
+  url: [host: "piano.#{mdns_hostname}.local", port: 80],
+  render_errors: [
+    formats: [html: PianoPhx.ErrorHTML, json: PianoPhx.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: PianoPhx.PubSub,
+  live_view: [signing_salt: "tn5cg324"],
+  server: false
 
 config :pomodoro_phx, PomodoroPhxWeb.Endpoint,
   url: [host: "pomodoro.#{mdns_hostname}.local", port: 80],

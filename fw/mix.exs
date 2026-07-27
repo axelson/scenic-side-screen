@@ -55,6 +55,7 @@ defmodule Fw.MixProject do
       dep(:govee_semaphore, :github),
       dep(:launcher, :path),
       dep(:piano_ctl, :path),
+      dep(:piano_phx, :path),
       dep(:piano_ui, :path),
       dep(:play, :github),
       dep(:play_web, :github),
@@ -63,7 +64,7 @@ defmodule Fw.MixProject do
       {:scenic_widget_contrib, github: "axelson/scenic-widget-contrib", branch: "jax", override: true},
       # {:scenic_widget_contrib, path: "~/dev/forks/scenic-widget-contrib", override: true},
       {:quantum, "~> 3.5"},
-      {:phoenix, "~> 1.7.0"},
+      {:phoenix, "~> 1.8.9"},
       # {:phoenix_live_view, "~> 0.18.7"},
       # {:phoenix_live_view, "0.17.12"},
       # https://github.com/hexpm/hex/issues/972
@@ -183,6 +184,12 @@ defmodule Fw.MixProject do
 
   defp dep(:piano_ctl, :path),
     do: {:piano_ctl, path: "~/dev/piano_ex/piano_ctl", override: true}
+
+  defp dep(:piano_phx, :github),
+    do: {:piano_phx, github: "axelson/piano_ex", sparse: "piano_phx"}
+
+  defp dep(:piano_phx, :path),
+    do: {:piano_phx, path: "~/dev/piano_ex/piano_phx", override: true}
 
   defp dep(:govee, :github), do: {:govee, github: "axelson/govee"}
   defp dep(:govee, :path), do: {:govee, path: "../../govee", override: true}

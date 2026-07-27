@@ -12,6 +12,10 @@ defmodule Fw.MyProxy do
         phoenix_endpoint: PlayWeb.Endpoint
       },
       %{
+        domain: Application.fetch_env!(:fw, :piano_phx_domain),
+        phoenix_endpoint: PianoPhx.Endpoint
+      },
+      %{
         domain: Application.fetch_env!(:fw, :pomodoro_phx_domain),
         phoenix_endpoint: PomodoroPhxWeb.Endpoint
       },
