@@ -206,6 +206,8 @@ config :play_web, PlayWeb.Endpoint,
 
 config :piano_ctl,
   libcluster_hosts: [],
+  pubsub: PianoPhx.PubSub,
+  song_topic: "piano:now_playing",
   stdin_sender: {Fw.PianobarDaemon, :send_command}
 
 config :piano_ui, :libcluster_strategy, Cluster.Strategy.Epmd
