@@ -41,7 +41,7 @@ defmodule Fw.MixProject do
   def application do
     [
       mod: {Fw.Application, []},
-      extra_applications: [:logger, :ssh, :runtime_tools]
+      extra_applications: [:logger, :ssh, :runtime_tools, :iex]
     ]
   end
 
@@ -107,7 +107,8 @@ defmodule Fw.MixProject do
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: :dev, runtime: false},
       {:nerves, "~> 1.9", runtime: false, targets: @all_targets},
-      {:nerves_pack, "~> 0.4", targets: @all_targets},
+      {:nerves_pack, "~> 0.7.2", targets: @all_targets},
+      {:nerves_ssh, "~> 1.3", targets: @all_targets},
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:circuits_gpio, "~> 1.0 or ~> 0.4", targets: @all_targets},
       # {:nerves_system_br, "~> 1.25", targets: @all_targets, runtime: false},
