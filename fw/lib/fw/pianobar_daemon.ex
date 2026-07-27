@@ -44,6 +44,7 @@ defmodule Fw.PianobarDaemon do
     |> String.split("\n", trim: true)
     |> Enum.each(fn line ->
       line = String.replace(line, ~r/\e\[[0-9;]*[a-zA-Z]/, "")
+
       if line != "" do
         Logger.debug("pianobar: #{line}")
       end

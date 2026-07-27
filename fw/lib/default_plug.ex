@@ -9,7 +9,7 @@ defmodule Fw.DefaultPlug do
         [
           Application.fetch_env!(:fw, :govee_phx_domain),
           Application.fetch_env!(:fw, :pomodoro_phx_domain),
-          Application.fetch_env!(:fw, :asteroids_domain),
+          Application.fetch_env!(:fw, :asteroids_domain)
         ]
         |> Enum.map(&"http://#{&1}")
     }

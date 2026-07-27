@@ -61,7 +61,8 @@ defmodule Fw.MixProject do
       dep(:play_web, :github),
       dep(:pomodoro, :github),
       dep(:pomodoro_phx, :github),
-      {:scenic_widget_contrib, github: "axelson/scenic-widget-contrib", branch: "jax", override: true},
+      {:scenic_widget_contrib,
+       github: "axelson/scenic-widget-contrib", branch: "jax", override: true},
       # {:scenic_widget_contrib, path: "~/dev/forks/scenic-widget-contrib", override: true},
       {:quantum, "~> 3.5"},
       {:phoenix, "~> 1.8.9"},
@@ -75,7 +76,6 @@ defmodule Fw.MixProject do
 
       # Temporary (until https://github.com/SchedEx/SchedEx/pull/60 is merged and released)
       {:sched_ex, github: "axelson/SchedEx", branch: "remove-timex", override: true},
-
       {:telemetry_poller, "~> 1.0"},
 
       # {:ssh_client_key_api, path: "~/dev/forks/ssh_client_key_api"},
@@ -91,7 +91,6 @@ defmodule Fw.MixProject do
 
       # scenic pins elixir_make ~> 0.8.4 but circuits_uart needs ~> 0.6 (which includes 0.10+)
       {:elixir_make, "~> 0.6", override: true},
-
       {:power_control, "~> 0.2.0"},
       {:rpi_fb_capture, "~> 0.3.0", targets: @all_targets},
       # {:elixir_make, github: "axelson/elixir_make", branch: "detect-compile-needed", override: true},
